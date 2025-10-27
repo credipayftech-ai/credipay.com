@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credi Pay: Your Financial Partner</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #008B8B; /* Dark Cyan */
+            --primary-dark: #006D6D;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .bg-dark-cyan {
+            background-color: var(--primary-color);
+        }
+        .text-dark-cyan {
+            color: var(--primary-color);
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 139, 139, 0.3), 0 2px 4px -2px rgba(0, 139, 139, 0.3);
+        }
+        .bg-dark-cyan-gradient {
+            background: linear-gradient(135deg, #008B8B, #006D6D);
+        }
+        .icon-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header / Navigation -->
+    <header class="shadow-md sticky top-0 z-50 bg-white">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="text-2xl font-extrabold text-dark-cyan">[Credi Pay Logo]</div>
+            <div class="space-x-4 hidden md:flex">
+                <a href="#solutions" class="text-gray-600 hover:text-dark-cyan font-medium transition duration-150">Features</a>
+                <a href="#investors" class="text-gray-600 hover:text-dark-cyan font-medium transition duration-150">For Investors</a>
+                <a href="#partners" class="text-gray-600 hover:text-dark-cyan font-medium transition duration-150">Partners</a>
+            </div>
+            <a href="#signup" class="btn-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:shadow-xl hidden sm:inline-block">Join Waitlist</a>
+        </nav>
+    </header>
+
+    <!-- 1. Hero Section -->
+    <section id="hero" class="bg-dark-cyan-gradient text-white py-20 sm:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <!-- Text Content -->
+            <div class="space-y-6">
+                <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight">
+                    Financial Health for Everyone in <span class="block">Bangladesh.</span>
+                </h1>
+                <p class="text-xl text-gray-200">
+                    Get salary-linked credit, build savings effortlessly, and join secure digital savings circles. A complete platform for users and a scalable opportunity for investors.
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
+                    <a href="#signup" class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg shadow-2xl shadow-[rgba(0,139,139,0.5)] border-2 border-white/50">
+                        Join the Waitlist
+                    </a>
+                    <a href="#investors" class="bg-white text-dark-cyan font-bold py-3 px-8 rounded-full text-lg shadow-md hover:bg-gray-100 transition duration-150">
+                        Learn More for Investors
+                    </a>
+                </div>
+            </div>
+
+            <!-- Visual Placeholder (Abstract Smartphone Graphic) -->
+            <div class="hidden md:flex justify-center">
+                <!-- Abstract Smartphone Graphic (SVG for clean, scalable visual) -->
+                <svg viewBox="0 0 500 500" class="w-full max-w-sm h-auto rotate-6 transform" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="50" y="20" width="300" height="480" rx="30" fill="white" stroke="#333" stroke-width="8"/>
+                    <rect x="70" y="50" width="260" height="420" rx="15" fill="#f8fafc"/>
+                    <!-- Abstract Chart/Graph on screen -->
+                    <path d="M 80 400 L 140 300 L 200 350 L 260 250 L 320 320" stroke="var(--primary-color)" stroke-width="4" fill="none"/>
+                    <circle cx="80" cy="400" r="5" fill="var(--primary-color)"/>
+                    <circle cx="140" cy="300" r="5" fill="var(--primary-color)"/>
+                    <circle cx="200" cy="350" r="5" fill="var(--primary-color)"/>
+                    <circle cx="260" cy="250" r="5" fill="var(--primary-color)"/>
+                    <circle cx="320" cy="320" r="5" fill="var(--primary-color)"/>
+                    <text x="80" y="100" font-family="Inter" font-size="28" font-weight="700" fill="#333">৳3,500</text>
+                    <text x="80" y="135" font-family="Inter" font-size="16" fill="#888">Available Credit</text>
+                    <rect x="150" y="150" width="150" height="15" rx="7.5" fill="#fca5a5"/>
+                    <rect x="150" y="150" width="80" height="15" rx="7.5" fill="var(--primary-color)"/>
+                    <text x="80" y="162" font-family="Inter" font-size="12" fill="#555">Credit Usage</text>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. The Problem We Solve -->
+    <section id="problem" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-12">Solving Real Financial Pain Points.</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+
+                <!-- Problem Card 1 -->
+                <div class="p-6 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
+                    <div class="text-4xl mb-4 text-dark-cyan">💳</div>
+                    <h3 class="text-xl font-semibold text-gray-900">Credit Cards Are Hard to Get</h3>
+                    <p class="text-gray-600 text-sm mt-2">High eligibility and long paperwork exclude 30M+ credit-worthy users.</p>
+                </div>
+
+                <!-- Problem Card 2 -->
+                <div class="p-6 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
+                    <div class="text-4xl mb-4 text-dark-cyan">📉</div>
+                    <h3 class="text-xl font-semibold text-gray-900">The Month-End Cash Crunch</h3>
+                    <p class="text-gray-600 text-sm mt-2">Workers face critical cash shortages right before the next payday arrives.</p>
+                </div>
+
+                <!-- Problem Card 3 -->
+                <div class="p-6 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
+                    <div class="text-4xl mb-4 text-dark-cyan">🏥</div>
+                    <h3 class="text-xl font-semibold text-gray-900">Stress from Unexpected Bills</h3>
+                    <p class="text-gray-600 text-sm mt-2">Hospital fees and sudden expenses create severe, immediate financial distress.</p>
+                </div>
+
+                <!-- Problem Card 4 -->
+                <div class="p-6 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
+                    <div class="text-4xl mb-4 text-dark-cyan">🚫</div>
+                    <h3 class="text-xl font-semibold text-gray-900">No Trusted BNPL</h3>
+                    <p class="text-gray-600 text-sm mt-2">A lack of salary-linked, regulated Buy Now Pay Later options for essentials.</p>
+                </div>
+                
+                <!-- Problem Card 5 -->
+                <div class="p-6 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
+                    <div class="text-4xl mb-4 text-dark-cyan">⚙️</div>
+                    <h3 class="text-xl font-semibold text-gray-900">No Passive Wealth Building</h3>
+                    <p class="text-gray-600 text-sm mt-2">No automated tools to turn small daily change into real, long-term savings.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Our Core Solutions -->
+    <section id="solutions" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-center text-gray-900 mb-16">Your All-in-One Financial Health Platform</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Solution Card 1: Credit Line -->
+                <div class="p-8 bg-white rounded-2xl shadow-xl border-t-4 border-dark-cyan transform hover:scale-[1.02] transition duration-300">
+                    <div class="p-3 bg-dark-cyan/10 rounded-full w-fit mb-4 icon-shadow">
+                        <svg class="w-8 h-8 text-dark-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Credit Line & BNPL</h3>
+                    <p class="text-gray-700">Salary-backed credit for daily essentials. Auto-debit repayment via NPSB for **near-zero defaults**, making credit accessible and responsible.</p>
+                </div>
+
+                <!-- Solution Card 2: Digital Samiti -->
+                <div class="p-8 bg-white rounded-2xl shadow-xl border-t-4 border-dark-cyan transform hover:scale-[1.02] transition duration-300">
+                    <div class="p-3 bg-dark-cyan/10 rounded-full w-fit mb-4 icon-shadow">
+                        <svg class="w-8 h-8 text-dark-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.292"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Digital Samiti</h3>
+                    <p class="text-gray-700">Digital, automated, and secure **rotating savings circles**. Built-in virality ensures user acquisition via social networks and strong user retention.</p>
+                </div>
+
+                <!-- Solution Card 3: Round-Up Investing -->
+                <div class="p-8 bg-white rounded-2xl shadow-xl border-t-4 border-dark-cyan transform hover:scale-[1.02] transition duration-300">
+                    <div class="p-3 bg-dark-cyan/10 rounded-full w-fit mb-4 icon-shadow">
+                        <svg class="w-8 h-8 text-dark-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Round-Up Investments</h3>
+                    <p class="text-gray-700">Micro-investing spare change from every purchase into regulated mutual funds. Creates loyal, financially healthy users who generate AUM revenue.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. How It Works (For Users) -->
+    <section id="how-it-works" class="py-20 bg-dark-cyan-gradient text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl font-extrabold mb-12">Financial Freedom in 3 Steps</h2>
+            <div class="relative flex justify-between items-start pt-12">
+                
+                <!-- Timeline Line -->
+                <div class="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4/5 h-1 bg-white/50 rounded-full"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-left">
+                    
+                    <!-- Step 1 -->
+                    <div class="relative flex flex-col items-center md:items-start p-6 bg-white/10 rounded-xl">
+                        <div class="bg-white text-dark-cyan font-bold w-12 h-12 flex items-center justify-center rounded-full text-xl shadow-lg mb-4">1</div>
+                        <h3 class="text-xl font-bold mb-2">Link & Join</h3>
+                        <p class="text-gray-200">Connect your salary account via your employer to instantly verify your creditworthiness.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative flex flex-col items-center md:items-start p-6 bg-white/10 rounded-xl">
+                        <div class="bg-white text-dark-cyan font-bold w-12 h-12 flex items-center justify-center rounded-full text-xl shadow-lg mb-4">2</div>
+                        <h3 class="text-xl font-bold mb-2">Spend & Save</h3>
+                        <p class="text-gray-200">Use BNPL for essentials, join a secure Digital Samiti, and automatically invest spare change.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative flex flex-col items-center md:items-start p-6 bg-white/10 rounded-xl">
+                        <div class="bg-white text-dark-cyan font-bold w-12 h-12 flex items-center justify-center rounded-full text-xl shadow-lg mb-4">3</div>
+                        <h3 class="text-xl font-bold mb-2">Grow Automatically</h3>
+                        <p class="text-gray-200">Repay seamlessly via auto-debit and watch your credit score and wealth climb effortlessly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 5. The Future Vision & Investment Marketplace (Key for Investors) -->
+    <section id="vision" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <!-- Vision Content -->
+            <div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">Democratizing High-Value Investments.</h2>
+                <p class="text-lg text-gray-600 mb-8">
+                    Our long-term vision extends beyond daily finance to creating Bangladesh's first **accessible Investment Marketplace**. We're building the infrastructure now.
+                </p>
+                <div class="space-y-4">
+                    <p class="text-xl font-semibold text-dark-cyan">Once we scale our user base, we will launch:</p>
+                    <ul class="space-y-2 text-gray-700 list-none pl-0">
+                        <li class="flex items-start"><span class="mr-2 text-dark-cyan font-bold text-xl">•</span>Fractional Property Investment</li>
+                        <li class="flex items-start"><span class="mr-2 text-dark-cyan font-bold text-xl">•</span>Small Business Crowdfunding</li>
+                        <li class="flex items-start"><span class="mr-2 text-dark-cyan font-bold text-xl">•</span>Agricultural Project Funding</li>
+                        <li class="flex items-start"><span class="mr-2 text-dark-cyan font-bold text-xl">•</span>Infrastructure Investment Pools</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Why It's Powerful -->
+            <div class="p-8 bg-white rounded-xl shadow-2xl border-l-4 border-dark-cyan">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Why This Flywheel is Powerful:</h3>
+                <p class="text-gray-700">This is a **natural extension**, leveraging our trusted user relationships and deep, proprietary financial data to unlock premium asset classes for the mass market. We turn micro-investors into qualified participants in macro-growth.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. For Investors & Partners -->
+    <section id="investors" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-center text-gray-900 mb-12">Building the Future of Finance.</h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- A. For Investors -->
+                <div class="p-8 bg-gray-100 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-dark-cyan mb-4">For Investors: A Scalable Opportunity</h3>
+                    <div class="space-y-4 text-gray-700">
+                        <p><strong>Traction & Validation:</strong> Currently in the **NSU Startup Next Incubation Program**. Shortlisted for the iDEA government 2025 grant.</p>
+                        <p><strong>Market Opportunity:</strong> We target the **55.22 Million credit-ready individuals** in Bangladesh, digitizing the 80% who use informal savings (Samiti).</p>
+                        <p><strong>Revenue Model:</strong> Multi-stream revenue from BNPL fees, Samiti platform fees, and long-term investment commissions (AUM) provides high LTV and stability.</p>
+                    </div>
+                    <a href="#contact" class="inline-block mt-6 btn-primary text-white font-semibold py-3 px-8 rounded-full shadow-lg">
+                        Contact for Investment Info
+                    </a>
+                </div>
+
+                <!-- B. For Employers/Merchants -->
+                <div class="p-8 bg-gray-100 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-dark-cyan mb-4">For Employers & Merchants: Strategic Partnership</h3>
+                    <div class="space-y-4 text-gray-700">
+                        <p><strong>Value Proposition:</strong> Boost **employee financial wellness** (reducing stress/absenteeism) and increase **customer sales** by offering flexible, interest-free payment options at checkout.</p>
+                        <p><strong>Integration:</strong> Seamless integration with our secure, salary-linked NPSB repayment system and merchant dashboards.</p>
+                        <p><strong>Partnership Pipeline:</strong> LOIs already secured from factories ready for integration.</p>
+                    </div>
+                    <a href="#contact" class="inline-block mt-6 bg-gray-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-900 transition duration-150" >
+                        Become a Partner
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Final Call to Action (Dual) -->
+    <section id="signup" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 rounded-2xl shadow-2xl overflow-hidden">
+                
+                <!-- Left Panel (Users) -->
+                <div class="p-12 bg-dark-cyan text-white space-y-4">
+                    <h3 class="text-3xl font-extrabold">Ready for a Better Financial Life?</h3>
+                    <p class="text-gray-200">Sign up for early access to our BNPL, Digital Samiti, and Round-Up features.</p>
+                    <form onsubmit="handleSignup(event)" class="pt-4 space-y-4">
+                        <input type="email" id="user-email" placeholder="Enter your email address" required 
+                               class="w-full px-4 py-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-white/50" />
+                        <button type="submit" class="w-full bg-white text-dark-cyan font-bold py-3 rounded-lg shadow-xl hover:bg-gray-100 transition duration-150">
+                            Notify Me
+                        </button>
+                        <p id="user-message" class="text-sm text-center text-gray-200 hidden">Thank you! We'll notify you soon.</p>
+                    </form>
+                </div>
+
+                <!-- Right Panel (Investors/Partners) -->
+                <div class="p-12 bg-gray-800 text-white space-y-4" id="contact">
+                    <h3 class="text-3xl font-extrabold">Believe in Our Vision?</h3>
+                    <p class="text-gray-400">Get in touch to learn about investment or partnership opportunities with Credit Pay.</p>
+                    <a href="mailto:hello@credipay.com" class="inline-block bg-yellow-500 text-gray-900 font-bold py-3 px-8 rounded-lg shadow-xl hover:bg-yellow-400 transition duration-150 mt-4">
+                        Contact the Team
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-b border-gray-700 pb-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-extrabold text-dark-cyan mb-2">[Credi Pay Logo]</h4>
+                    <p class="text-sm text-gray-400">Where Daily Needs Meet Financial Ease.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-3 text-gray-300">Company</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#solutions" class="hover:text-dark-cyan transition duration-150">About</a></li>
+                        <li><a href="#investors" class="hover:text-dark-cyan transition duration-150">For Investors</a></li>
+                        <li><a href="#partners" class="hover:text-dark-cyan transition duration-150">Become a Partner</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-3 text-gray-300">Legal</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-dark-cyan transition duration-150">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-dark-cyan transition duration-150">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-3 text-gray-300">Contact</h4>
+                    <p class="text-sm text-gray-400">Email: hello@credipay.com</p>
+                    <p class="text-sm text-gray-400">Bangladesh</p>
+                </div>
+            </div>
+            <div class="text-center text-sm text-gray-500">
+                &copy; <span id="current-year"></span> Credi Pay. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year dynamically
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Simple form submission handler (client-side only for this template)
+        function handleSignup(event) {
+            event.preventDefault();
+            const emailInput = document.getElementById('user-email');
+            const messageElement = document.getElementById('user-message');
+            
+            // In a real application, you would send this data to a backend server (e.g., Firebase/Firestore, or a CRM)
+            
+            if (emailInput.checkValidity()) {
+                console.log('Waitlist Sign-up Submitted:', emailInput.value);
+                emailInput.value = ''; 
+                messageElement.textContent = "Thank you! We've added you to the early access list.";
+                messageElement.classList.remove('hidden');
+                messageElement.classList.add('text-green-300');
+            } else {
+                messageElement.textContent = "Please enter a valid email address.";
+                messageElement.classList.remove('hidden');
+                messageElement.classList.add('text-red-400');
+            }
+        }
+    </script>
+
+</body>
+</html>
