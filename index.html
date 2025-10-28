@@ -65,6 +65,67 @@
         .modal-overlay.active .modal-content {
             transform: scale(1);
         }
+        /* New styling for the investment section */
+        .investment-bg {
+            background: linear-gradient(145deg, #1f2937, #111827);
+        }
+        .text-gradient {
+            background-image: linear-gradient(45deg, var(--primary-color), #4cda99);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .asset-card {
+            transition: all 0.3s ease;
+            border: 1px solid #374151;
+        }
+        .asset-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 25px -5px rgba(0, 139, 139, 0.2);
+        }
+        
+        /* === Problem Section (Full Background Image) === */
+        .problem-card-bg {
+            height: 250px; /* Fixed height for consistent cards */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            color: white;
+            /* Ensure the text is visible on the image */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Dark gradient overlay for text readability */
+        .problem-card-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1));
+            border-radius: 0.75rem; /* Match card rounding */
+            z-index: 10;
+            transition: background 0.3s ease;
+        }
+
+        /* Ensure content is above the overlay */
+        .problem-card-content {
+            position: relative;
+            z-index: 20;
+            padding: 1.5rem; 
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Pin text to the bottom */
+            text-align: left;
+        }
+
+        /* Hover effect on card to make the image slightly clearer */
+        .problem-card-bg:hover::before {
+             background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -72,13 +133,23 @@
     <!-- Header / Navigation -->
     <header class="shadow-md sticky top-0 z-50 bg-white">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <div class="text-2xl font-extrabold text-dark-cyan">[Credi Pay Logo]</div>
+            <!-- LOGO -->
+            <a href="#hero" class="flex items-center">
+                <img 
+                    src="https://i.imgur.com/9L6DzoA.png" 
+                    alt="Credi Pay Logo" 
+                    class="h-8 w-auto" 
+                    onerror="this.onerror=null; this.src='https://placehold.co/120x32/008B8B/ffffff?text=Credi+Pay+Logo';" 
+                />
+            </a>
+            
             <div class="space-x-4 hidden md:flex">
                 <a href="#solutions" class="text-gray-600 hover:text-dark-cyan font-medium transition duration-150">Features</a>
-                <a href="#investors" class="text-gray-600 hover:text-dark-cyan font-medium transition duration-150">For Investors</a>
+                <a href="#vision" class="text-gray-600 hover:text-dark-cyan font-medium transition duration-150">Marketplace</a>
                 <a href="#partners" class="text-gray-600 hover:text-dark-cyan font-medium transition duration-150">Partners</a>
             </div>
-            <button onclick="openModal('waitlist')" class="btn-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:shadow-xl hidden sm:inline-block">Join Waitlist</button>
+            <!-- Waitlist Button (Modal) -->
+            <button onclick="openModal('waitlist')" class="btn-primary text-white font-semibold py-2 px-6 rounded-xl shadow-lg hover:shadow-xl hidden sm:inline-block">Join Waitlist</button>
         </nav>
     </header>
 
@@ -94,35 +165,24 @@
                     Get salary-linked credit, build savings effortlessly, and join secure digital savings circles. A complete platform for users and a scalable opportunity for investors.
                 </p>
                 <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
-                    <button onclick="openModal('waitlist')" class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg shadow-2xl shadow-[rgba(0,139,139,0.5)] border-2 border-white/50">
+                    <!-- User Waitlist Button (Modal) -->
+                    <button onclick="openModal('waitlist')" class="btn-primary text-white font-bold py-3 px-8 rounded-xl text-lg shadow-2xl shadow-[rgba(0,139,139,0.5)] border-2 border-white/50">
                         Join the Waitlist
                     </button>
-                    <!-- Updated to use the correct email -->
-                    <a href="mailto:irfankarim67@gmail.com?subject=Investment Inquiry for Credi Pay" class="bg-white text-dark-cyan font-bold py-3 px-8 rounded-full text-lg shadow-md hover:bg-gray-100 transition duration-150">
+                    <!-- Investor Contact Button -->
+                    <a id="invest-btn-hero" href="mailto:irfankarim67@gmail.com?subject=Investment Inquiry for Credi Pay" onclick="handleMailtoClick('invest-btn-hero', 'Contact for Investment Info');" class="bg-white text-dark-cyan font-bold py-3 px-8 rounded-xl text-lg shadow-md hover:bg-gray-100 transition duration-150">
                         Contact for Investment Info
                     </a>
                 </div>
             </div>
 
-            <!-- Visual Placeholder (Abstract Smartphone Graphic) -->
-            <div class="hidden md:flex justify-center">
-                <!-- Abstract Smartphone Graphic (SVG for clean, scalable visual) -->
-                <svg viewBox="0 0 500 500" class="w-full max-w-sm h-auto rotate-6 transform" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="50" y="20" width="300" height="480" rx="30" fill="white" stroke="#333" stroke-width="8"/>
-                    <rect x="70" y="50" width="260" height="420" rx="15" fill="#f8fafc"/>
-                    <!-- Abstract Chart/Graph on screen -->
-                    <path d="M 80 400 L 140 300 L 200 350 L 260 250 L 320 320" stroke="var(--primary-color)" stroke-width="4" fill="none"/>
-                    <circle cx="80" cy="400" r="5" fill="var(--primary-color)"/>
-                    <circle cx="140" cy="300" r="5" fill="var(--primary-color)"/>
-                    <circle cx="200" cy="350" r="5" fill="var(--primary-color)"/>
-                    <circle cx="260" cy="250" r="5" fill="var(--primary-color)"/>
-                    <circle cx="320" cy="320" r="5" fill="var(--primary-color)"/>
-                    <text x="80" y="100" font-family="Inter" font-size="28" font-weight="700" fill="#333">৳3,500</text>
-                    <text x="80" y="135" font-family="Inter" font-size="16" fill="#888">Available Credit</text>
-                    <rect x="150" y="150" width="150" height="15" rx="7.5" fill="#fca5a5"/>
-                    <rect x="150" y="150" width="80" height="15" rx="7.5" fill="var(--primary-color)"/>
-                    <text x="80" y="162" font-family="Inter" font-size="12" fill="#555">Credit Usage</text>
-                </svg>
+            <!-- Visual Placeholder -->
+            <div class="flex justify-center">
+                <img 
+                    src="https://i.imgur.com/iIFcy9i.png" 
+                    alt="Credi Pay Mobile App Interface Screenshot" 
+                    class="w-full max-w-lg md:max-w-2xl h-auto rounded-3xl rotate-6 transform shadow-2xl transition-transform duration-500 hover:rotate-3"
+                >
             </div>
         </div>
     </section>
@@ -133,39 +193,49 @@
             <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-12">Solving Real Financial Pain Points.</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
 
-                <!-- Problem Card 1 -->
-                <div class="p-6 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
-                    <div class="text-4xl mb-4 text-dark-cyan">💳</div>
-                    <h3 class="text-xl font-semibold text-gray-900">Credit Cards Are Hard to Get</h3>
-                    <p class="text-gray-600 text-sm mt-2">High eligibility and long paperwork exclude 30M+ credit-worthy users.</p>
+                <!-- Problem Card 1: Credit Cards Are Hard to Get -->
+                <div class="problem-card-bg rounded-xl shadow-lg border-2 border-gray-100 hover:shadow-xl hover:border-dark-cyan transition duration-300 overflow-hidden" 
+                    style="background-image: url('https://imgur.com/YA24NCO.png');">
+                    <div class="problem-card-content">
+                        <h3 class="text-xl font-bold">Credit Cards Are Hard to Get</h3>
+                        <p class="text-gray-200 text-sm mt-1">High eligibility and long paperwork exclude 30M+ credit-worthy users.</p>
+                    </div>
                 </div>
 
-                <!-- Problem Card 2 -->
-                <div class="p-6 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
-                    <div class="text-4xl mb-4 text-dark-cyan">📉</div>
-                    <h3 class="text-xl font-semibold text-gray-900">The Month-End Cash Crunch</h3>
-                    <p class="text-gray-600 text-sm mt-2">Workers face critical cash shortages right before the next payday arrives.</p>
+                <!-- Problem Card 2: The Month-End Cash Crunch -->
+                <div class="problem-card-bg rounded-xl shadow-lg border-2 border-gray-100 hover:shadow-xl hover:border-dark-cyan transition duration-300 overflow-hidden" 
+                    style="background-image: url('https://imgur.com/yVN6sfA.png');">
+                    <div class="problem-card-content">
+                        <h3 class="text-xl font-bold">The Month-End Cash Crunch</h3>
+                        <p class="text-gray-200 text-sm mt-1">Workers face critical cash shortages right before the next payday arrives.</p>
+                    </div>
                 </div>
 
-                <!-- Problem Card 3 -->
-                <div class="p-6 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
-                    <div class="text-4xl mb-4 text-dark-cyan">🏥</div>
-                    <h3 class="text-xl font-semibold text-gray-900">Stress from Unexpected Bills</h3>
-                    <p class="text-gray-600 text-sm mt-2">Hospital fees and sudden expenses create severe, immediate financial distress.</p>
+                <!-- Problem Card 3: Stress from Unexpected Bills -->
+                <div class="problem-card-bg rounded-xl shadow-lg border-2 border-gray-100 hover:shadow-xl hover:border-dark-cyan transition duration-300 overflow-hidden" 
+                    style="background-image: url('https://imgur.com/TLMJ4Li.png');">
+                    <div class="problem-card-content">
+                        <h3 class="text-xl font-bold">Stress from Unexpected Bills</h3>
+                        <p class="text-gray-200 text-sm mt-1">Hospital fees and sudden expenses create severe, immediate financial distress.</p>
+                    </div>
                 </div>
 
-                <!-- Problem Card 4 -->
-                <div class="p-6 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
-                    <div class="text-4xl mb-4 text-dark-cyan">🚫</div>
-                    <h3 class="text-xl font-semibold text-gray-900">No Trusted BNPL</h3>
-                    <p class="text-gray-600 text-sm mt-2">A lack of salary-linked, regulated Buy Now Pay Later options for essentials.</p>
+                <!-- Problem Card 4: No Trusted BNPL -->
+                <div class="problem-card-bg rounded-xl shadow-lg border-2 border-gray-100 hover:shadow-xl hover:border-dark-cyan transition duration-300 overflow-hidden" 
+                    style="background-image: url('https://imgur.com/0hgzw2q.png');">
+                    <div class="problem-card-content">
+                        <h3 class="text-xl font-bold">No Trusted BNPL</h3>
+                        <p class="text-gray-200 text-sm mt-1">A lack of salary-linked, regulated Buy Now Pay Later options for essentials.</p>
+                    </div>
                 </div>
                 
-                <!-- Problem Card 5 -->
-                <div class="p-6 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
-                    <div class="text-4xl mb-4 text-dark-cyan">⚙️</div>
-                    <h3 class="text-xl font-semibold text-gray-900">No Passive Wealth Building</h3>
-                    <p class="text-gray-600 text-sm mt-2">No automated tools to turn small daily change into real, long-term savings.</p>
+                <!-- Problem Card 5: No Passive Wealth Building -->
+                <div class="problem-card-bg rounded-xl shadow-lg border-2 border-gray-100 hover:shadow-xl hover:border-dark-cyan transition duration-300 overflow-hidden" 
+                    style="background-image: url('https://imgur.com/VgdO9Rx.png');">
+                    <div class="problem-card-content">
+                        <h3 class="text-xl font-bold">No Passive Wealth Building</h3>
+                        <p class="text-gray-200 text-sm mt-1">No automated tools to turn small daily change into real, long-term savings.</p>
+                    </div>
                 </div>
 
             </div>
@@ -184,7 +254,7 @@
                         <svg class="w-8 h-8 text-dark-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                     </div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-3">Credit Line & BNPL</h3>
-                    <p class="text-gray-700">Salary-backed credit for daily essentials. Auto-debit repayment via NPSB for **near-zero defaults**, making credit accessible and responsible.</p>
+                    <p class="text-gray-700">Salary-backed credit for daily essentials. Auto-debit repayment via NPSB for near-zero defaults, making credit accessible and responsible.</p>
                 </div>
 
                 <!-- Solution Card 2: Digital Samiti -->
@@ -193,7 +263,7 @@
                         <svg class="w-8 h-8 text-dark-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.292"></path></svg>
                     </div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-3">Digital Samiti</h3>
-                    <p class="text-gray-700">Digital, automated, and secure **rotating savings circles**. Built-in virality ensures user acquisition via social networks and strong user retention.</p>
+                    <p class="text-gray-700">Digital, automated, and secure rotating savings circles. Built-in virality ensures user acquisition via social networks and strong user retention.</p>
                 </div>
 
                 <!-- Solution Card 3: Round-Up Investing -->
@@ -245,58 +315,251 @@
         </div>
     </section>
     
-    <!-- 5. The Future Vision & Investment Marketplace (Key for Investors) - IMPROVED -->
-    <section id="vision" class="py-20 bg-gray-900 text-white">
+    <!-- 5. Investment Marketplace (FIXED VERSION) -->
+    <section id="vision" class="py-20 investment-bg text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-6 text-white">
-                <span class="text-dark-cyan-gradient bg-clip-text text-transparent bg-cover">Democratizing</span> High-Value Investments
+            <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-4">
+                <span class="text-gradient">The Collective Investment Revolution</span>
             </h2>
-            <p class="text-xl text-center text-gray-400 max-w-3xl mx-auto mb-16">
-                We're building the flywheel: Trusted credit data unlocks access to Bangladesh's first **accessible Investment Marketplace**, fueling exponential growth.
+            <p class="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto">
+                Pool resources with thousands of others to invest in assets once reserved for the wealthy elite
             </p>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <!-- Visual Placeholder for Vision -->
-                <div class="relative p-12 bg-gray-800 rounded-3xl shadow-2xl overflow-hidden min-h-[300px]">
-                    <!-- Abstract Network Grid Background -->
-                    <div class="absolute inset-0 opacity-20">
-                        <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 L 0 10" fill="none" stroke="#008B8B" stroke-width="0.3"/></pattern></defs>
-                            <rect width="100%" height="100%" fill="url(#grid)" />
-                        </svg>
-                    </div>
+            <!-- How It Works Visualization -->
+            <div class="mb-16">
+                <div class="max-w-4xl mx-auto">
+                    <h3 class="text-2xl font-bold text-center mb-8 text-secondary-color">How Collective Investing Works</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        
+                        <!-- Step 1 -->
+                        <div class="text-center p-6 bg-gray-800 rounded-xl border border-gray-700 hover:border-dark-cyan transition duration-300">
+                            <div class="w-16 h-16 bg-dark-cyan rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">1</div>
+                            <h4 class="font-bold text-white mb-2">Start Small</h4>
+                            <p class="text-sm text-gray-400">Begin with as little as ৳500 from your round-up investments or direct contributions</p>
+                        </div>
 
-                    <!-- Central Icon -->
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="p-8 bg-dark-cyan rounded-full icon-shadow shadow-dark-cyan-gradient animate-pulse">
-                             <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-                            </svg>
+                        <!-- Step 2 -->
+                        <div class="text-center p-6 bg-gray-800 rounded-xl border border-gray-700 hover:border-dark-cyan transition duration-300">
+                            <div class="w-16 h-16 bg-dark-cyan rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">2</div>
+                            <h4 class="font-bold text-white mb-2">Join a Pool</h4>
+                            <p class="text-sm text-gray-400">Choose from curated investment pools in real estate, gold, bonds, or agriculture</p>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="text-center p-6 bg-gray-800 rounded-xl border border-gray-700 hover:border-dark-cyan transition duration-300">
+                            <div class="w-16 h-16 bg-dark-cyan rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">3</div>
+                            <h4 class="font-bold text-white mb-2">Pool Reaches Goal</h4>
+                            <p class="text-sm text-gray-400">When the pool hits its target, we acquire the asset with professional management</p>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="text-center p-6 bg-gray-800 rounded-xl border border-gray-700 hover:border-dark-cyan transition duration-300">
+                            <div class="w-16 h-16 bg-dark-cyan rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">4</div>
+                            <h4 class="font-bold text-white mb-2">Earn Returns</h4>
+                            <p class="text-sm text-gray-400">Receive proportional income and appreciation - trade your shares anytime</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Impact Visualization -->
+            <div class="mb-16 bg-gray-800 rounded-2xl p-8 border border-gray-700">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-3xl font-bold text-white mb-4">Turning Small Change into Big Opportunities</h3>
+                        <p class="text-gray-300 mb-6">
+                            What if your daily coffee money could own a piece of a commercial building? Or your grocery savings could invest in government bonds? 
+                            We're making this possible through <span class="text-secondary-color font-semibold">collective investment pools</span>.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <span class="text-secondary-color mr-3 text-xl">⚡</span>
+                                <span class="text-white">Break down million-taka barriers with 500-taka contributions</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-secondary-color mr-3 text-xl">🛡️</span>
+                                <span class="text-white">Regulated, transparent, and professionally managed pools</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-secondary-color mr-3 text-xl">📈</span>
+                                <span class="text-white">Access returns previously exclusive to institutional investors</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="bg-gradient-to-br from-dark-cyan to-gray-900 rounded-xl p-6 text-center transform rotate-2 hover:rotate-0 transition-transform duration-300">
+                            <div class="text-5xl mb-4">🏢</div>
+                            <p class="text-lg font-semibold text-white">Example: Commercial Real Estate Pool</p>
+                            <div class="mt-4 space-y-2 text-sm text-gray-300">
+                                <div class="flex justify-between">
+                                    <span>Target Pool Size:</span>
+                                    <span class="text-white">৳5 Crore</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Minimum Investment:</span>
+                                    <span class="text-white">৳500</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Estimated Returns:</span>
+                                    <span class="text-secondary-color">8-12% annually</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Floating elements for visual interest -->
+                        <div class="absolute -top-4 -left-4 bg-secondary-color text-gray-900 px-3 py-1 rounded-full text-sm font-bold transform -rotate-6">
+                            Coming Soon
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                
+                <!-- LEFT SIDE: FOR USERS -->
+                <div class="space-y-8 p-8 bg-gray-900 rounded-2xl border border-gray-700 shadow-2xl">
+                    <div class="space-y-4">
+                        <h3 class="text-3xl font-extrabold text-white">Your Ticket to Premium Assets</h3>
+                        <p class="text-xl text-gray-300">
+                            With as little as <span class="text-secondary-color font-bold">৳500</span>, own a piece of Bangladesh's most valuable assets through our collective investment pools.
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 gap-6">
+                        <!-- Investment Assets Grid -->
+                        <div>
+                            <h4 class="font-bold text-xl text-dark-cyan mb-4">Access Premium Investment Classes:</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="asset-card p-4 bg-gray-800 rounded-lg text-center">
+                                    <div class="text-3xl mb-2">🏢</div>
+                                    <p class="font-semibold">Commercial Real Estate</p>
+                                    <p class="text-xs text-gray-400 mt-1">Own parts of office buildings & shopping malls</p>
+                                </div>
+                                <div class="asset-card p-4 bg-gray-800 rounded-lg text-center">
+                                    <div class="text-3xl mb-2">🥇</div>
+                                    <p class="font-semibold">Gold & Precious Metals</p>
+                                    <p class="text-xs text-gray-400 mt-1">Secure gold investments with insured storage</p>
+                                </div>
+                                <div class="asset-card p-4 bg-gray-800 rounded-lg text-center">
+                                    <div class="text-3xl mb-2">📜</div>
+                                    <p class="font-semibold">Government Bonds</p>
+                                    <p class="text-xs text-gray-400 mt-1">Low-risk, high-security national bonds</p>
+                                </div>
+                                <div class="asset-card p-4 bg-gray-800 rounded-lg text-center">
+                                    <div class="text-3xl mb-2">🌾</div>
+                                    <p class="font-semibold">Agricultural Land</p>
+                                    <p class="text-xs text-gray-400 mt-1">Collective farmland ownership with managed returns</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <h4 class="font-bold text-lg text-dark-cyan">Why This Changes Everything:</h4>
+                            <ul class="space-y-3 text-gray-300">
+                                <li class="flex items-start">
+                                    <span class="text-secondary-color mr-3 font-bold text-xl">✓</span>
+                                    <p><strong class="text-white">Democratize Wealth Building:</strong> No more being excluded from lucrative investments due to high entry costs</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-secondary-color mr-3 font-bold text-xl">✓</span>
+                                    <p><strong class="text-white">Professional Management:</strong> Expert teams handle due diligence, acquisition, and management</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-secondary-color mr-3 font-bold text-xl">✓</span>
+                                    <p><strong class="text-white">Full Transparency:</strong> Track your investments in real-time with clear reporting</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-secondary-color mr-3 font-bold text-xl">✓</span>
+                                    <p><strong class="text-white">Liquid & Flexible:</strong> Buy or sell your pool shares through our secondary marketplace</p>
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
-                    <!-- Vision Text Overlay -->
-                    <div class="absolute bottom-6 left-6 right-6 p-4 bg-gray-700/80 backdrop-blur-sm rounded-lg border border-dark-cyan">
-                        <p class="text-sm font-semibold text-white">Asset Tokenization. Community Funding. Real-World Growth.</p>
-                    </div>
+                    <!-- User Call to Action -->
+                    <button onclick="openModal('waitlist')" class="w-full btn-primary text-white font-bold py-4 rounded-xl shadow-xl hover:shadow-2xl mt-4 text-lg">
+                        Reserve Your Spot in Our First Investment Pools → Join Waitlist
+                    </button>
                 </div>
-            
-                <!-- Vision Content -->
-                <div class="space-y-6">
-                    <h3 class="text-2xl font-bold text-dark-cyan">The Credi Pay Flywheel</h3>
-                    <p class="text-gray-300">
-                        Our initial financial products build **proprietary credit profiles** for millions of underserved users. This data then unlocks a path to the Investment Marketplace, transitioning users from consumers of credit to participants in wealth creation.
-                    </p>
-                    <div class="pt-4">
-                        <p class="text-xl font-semibold text-white mb-3 border-b border-gray-700 pb-2">Future Investment Tiers:</p>
-                        <ul class="space-y-3 text-gray-400 list-none pl-0">
-                            <li class="flex items-start"><span class="mr-3 text-secondary-color font-bold text-xl">•</span>Fractional Property Investment (e.g., fractional ownership of real estate assets)</li>
-                            <li class="flex items-start"><span class="mr-3 text-secondary-color font-bold text-xl">•</span>Small Business Crowdfunding (Investing in local, vetted SMEs)</li>
-                            <li class="flex items-start"><span class="mr-3 text-secondary-color font-bold text-xl">•</span>Infrastructure Investment Pools (Access to large-scale, long-term national projects)</li>
+
+                <!-- RIGHT SIDE: FOR INVESTORS -->
+                <div class="space-y-8 p-8 bg-gray-900 rounded-2xl border border-gray-700 shadow-2xl">
+                    <div class="space-y-4">
+                        <h3 class="text-3xl font-extrabold text-white">The Platform Economy for Premium Assets</h3>
+                        <p class="text-xl text-gray-300">
+                            We're building Bangladesh's first regulated marketplace for fractional ownership of high-value assets.
+                        </p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <h4 class="text-2xl font-bold text-dark-cyan">Why This is Revolutionary:</h4>
+                        <ul class="space-y-4 text-gray-300">
+                            <li class="flex items-start">
+                                <span class="text-secondary-color mr-3 text-2xl">🔥</span>
+                                <div>
+                                    <p class="font-semibold text-white">Unlocks Trillions in Dead Capital</p>
+                                    <p class="text-sm mt-1">Bangladesh has over $900B in 'dead capital' - assets that can't be easily traded or used as collateral. We're making them liquid.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-secondary-color mr-3 text-2xl">💰</span>
+                                <div>
+                                    <p class="font-semibold text-white">Multiple Revenue Streams</p>
+                                    <p class="text-sm mt-1">Platform fees (1-2%), transaction commissions, asset management fees, and premium subscription services.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-secondary-color mr-3 text-2xl">📊</span>
+                                <div>
+                                    <p class="font-semibold text-white">Built-in Network Effects</p>
+                                    <p class="text-sm mt-1">Each new pool creates more liquidity, attracting more users and better assets in a virtuous cycle.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-secondary-color mr-3 text-2xl">🛡️</span>
+                                <div>
+                                    <p class="font-semibold text-white">Regulatory First-Mover Advantage</p>
+                                    <p class="text-sm mt-1">Working with Bangladesh Bank and BSEC to establish the framework for collective investment platforms.</p>
+                                </div>
+                            </li>
                         </ul>
                     </div>
+
+                    <div class="pt-4 border-t border-gray-700">
+                        <h4 class="text-2xl font-bold text-dark-cyan mb-4">Market Opportunity:</h4>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div class="p-3 bg-gray-800 rounded-lg text-center">
+                                <p class="font-bold text-white">$900B+</p>
+                                <p class="text-gray-400">Untapped Asset Value</p>
+                            </div>
+                            <div class="p-3 bg-gray-800 rounded-lg text-center">
+                                <p class="font-bold text-white">55M+</p>
+                                <p class="text-gray-400">Potential Investors</p>
+                            </div>
+                            <div class="p-3 bg-gray-800 rounded-lg text-center">
+                                <p class="font-bold text-white"><1%</p>
+                                <p class="text-gray-400">Current Market Penetration</p>
+                            </div>
+                            <div class="p-3 bg-gray-800 rounded-lg text-center">
+                                <p class="font-bold text-white">80%</p>
+                                <p class="text-gray-400">Using Informal Savings</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Investor Call to Action -->
+                    <a id="invest-btn-marketplace" href="mailto:irfankarim67@gmail.com?subject=Investment Inquiry for Credi Pay" onclick="handleMailtoClick('invest-btn-marketplace', 'Contact Our Team');" class="w-full inline-block text-center bg-secondary-color text-gray-900 font-bold py-4 rounded-xl shadow-xl hover:bg-yellow-400 transition duration-150 mt-4 text-lg">
+                        Lead the Investment Democratization Movement → Contact Our Team
+                    </a>
                 </div>
+            </div>
+            
+            <!-- Testimonial Placeholder -->
+            <div class="mt-16 text-center p-8 bg-gray-800 rounded-2xl border-l-4 border-secondary-color shadow-lg max-w-2xl mx-auto">
+                <p class="italic text-xl text-gray-300 mb-4">
+                    <span class="text-4xl leading-none mr-2">"</span>For the first time, my small savings can work as hard as a millionaire's money. This changes everything for ordinary Bangladeshis.<span class="text-4xl leading-none ml-2">"</span>
+                </p>
+                <p class="text-sm font-semibold text-dark-cyan">- Future Credi Pay User</p>
             </div>
         </div>
     </section>
@@ -311,12 +574,12 @@
                 <div class="p-8 bg-white rounded-xl shadow-lg border-t-4 border-dark-cyan">
                     <h3 class="text-2xl font-bold text-dark-cyan mb-4">For Investors: A Scalable Opportunity</h3>
                     <div class="space-y-4 text-gray-700">
-                        <p><strong>Traction & Validation:</strong> Currently in the **NSU Startup Next Incubation Program**. Shortlisted for the iDEA government 2025 grant.</p>
-                        <p><strong>Market Opportunity:</strong> We target the **55.22 Million credit-ready individuals** in Bangladesh, digitizing the 80% who use informal savings (Samiti).</p>
+                        <p><strong>Traction & Validation:</strong> Currently in the <strong>NSU Startup Next Incubation Program</strong>. Shortlisted for the iDEA government 2025 grant.</p>
+                        <p><strong>Market Opportunity:</strong> We target the <strong>55.22 Million credit-ready individuals</strong> in Bangladesh, digitizing the 80% who use informal savings (Samiti).</p>
                         <p><strong>Revenue Model:</strong> Multi-stream revenue from BNPL fees, Samiti platform fees, and long-term investment commissions (AUM) provides high LTV and stability.</p>
                     </div>
-                    <!-- Button now directs to mailto for Investor contact -->
-                    <a href="mailto:irfankarim67@gmail.com?subject=Investment Inquiry for Credi Pay" class="inline-block mt-6 btn-primary text-white font-semibold py-3 px-8 rounded-full shadow-lg">
+                    <!-- Investor Contact Button -->
+                    <a id="invest-btn-section" href="mailto:irfankarim67@gmail.com?subject=Investment Inquiry for Credi Pay" onclick="handleMailtoClick('invest-btn-section', 'Contact for Investment Info');" class="inline-block mt-6 btn-primary text-white font-semibold py-3 px-8 rounded-xl shadow-lg">
                         Contact for Investment Info
                     </a>
                 </div>
@@ -325,12 +588,12 @@
                 <div class="p-8 bg-white rounded-xl shadow-lg border-t-4 border-gray-700" id="partners">
                     <h3 class="text-2xl font-bold text-gray-900 mb-4">For Employers & Merchants: Strategic Partnership</h3>
                     <div class="space-y-4 text-gray-700">
-                        <p><strong>Value Proposition:</strong> Boost **employee financial wellness** (reducing stress/absenteeism) and increase **customer sales** by offering flexible, interest-free payment options at checkout.</p>
+                        <p><strong>Value Proposition:</strong> Boost <strong>employee financial wellness</strong> (reducing stress/absenteeism) and increase <strong>customer sales</strong> by offering flexible, interest-free payment options at checkout.</p>
                         <p><strong>Integration:</strong> Seamless integration with our secure, salary-linked NPSB repayment system and merchant dashboards.</p>
                         <p><strong>Partnership Pipeline:</strong> LOIs already secured from factories ready for integration.</p>
                     </div>
-                    <!-- Button now opens the modal for Partnership inquiry -->
-                    <button onclick="openModal('partner')" class="inline-block mt-6 bg-gray-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-900 transition duration-150" >
+                    <!-- Partner Button (Modal) -->
+                    <button onclick="openModal('partner')" class="inline-block mt-6 bg-gray-700 text-white font-semibold py-3 px-8 rounded-xl shadow-lg hover:bg-gray-900 transition duration-150" >
                         Become a Partner
                     </button>
                 </div>
@@ -348,7 +611,7 @@
                     <h3 class="text-3xl font-extrabold">Ready for a Better Financial Life?</h3>
                     <p class="text-gray-200">Sign up for early access to our BNPL, Digital Samiti, and Round-Up features.</p>
                     <!-- Button now opens the modal for Waitlist -->
-                    <button onclick="openModal('waitlist')" class="w-full bg-white text-dark-cyan font-bold py-3 rounded-lg shadow-xl hover:bg-gray-100 transition duration-150">
+                    <button onclick="openModal('waitlist')" class="w-full bg-white text-dark-cyan font-bold py-3 rounded-xl shadow-xl hover:bg-gray-100 transition duration-150">
                         Notify Me
                     </button>
                 </div>
@@ -357,7 +620,8 @@
                 <div class="p-12 bg-gray-800 text-white space-y-4" id="contact">
                     <h3 class="text-3xl font-extrabold">Believe in Our Vision?</h3>
                     <p class="text-gray-400">Get in touch to learn about investment or partnership opportunities with Credit Pay.</p>
-                    <a href="mailto:irfankarim67@gmail.com?subject=Investment Inquiry for Credi Pay" class="inline-block bg-secondary-color text-gray-900 font-bold py-3 px-8 rounded-lg shadow-xl hover:bg-yellow-400 transition duration-150 mt-4">
+                    <!-- Investor Contact Button -->
+                    <a id="invest-btn-final" href="mailto:irfankarim67@gmail.com?subject=Investment Inquiry for Credi Pay" onclick="handleMailtoClick('invest-btn-final', 'Contact the Team');" class="inline-block bg-secondary-color text-gray-900 font-bold py-3 px-8 rounded-xl shadow-xl hover:bg-yellow-400 transition duration-150 mt-4">
                         Contact the Team
                     </a>
                 </div>
@@ -370,14 +634,22 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-b border-gray-700 pb-8 mb-8">
                 <div>
-                    <h4 class="text-xl font-extrabold text-dark-cyan mb-2">[Credi Pay Logo]</h4>
-                    <p class="text-sm text-gray-400">Where Daily Needs Meet Financial Ease.</p>
+                    <!-- Footer Logo -->
+                    <a href="#hero" class="flex items-center">
+                        <img 
+                            src="https://i.imgur.com/9L6DzoA.png" 
+                            alt="Credi Pay Logo" 
+                            class="h-8 w-auto" 
+                            onerror="this.onerror=null; this.src='https://placehold.co/120x32/008B8B/ffffff?text=Credi+Pay+Logo';" 
+                        />
+                    </a>
+                    <p class="text-sm text-gray-400 mt-2">Where Daily Needs Meet Financial Ease.</p>
                 </div>
                 <div>
                     <h4 class="font-bold mb-3 text-gray-300">Company</h4>
                     <ul class="space-y-2 text-sm text-gray-400">
                         <li><a href="#solutions" class="hover:text-dark-cyan transition duration-150">About</a></li>
-                        <li><a href="#investors" class="hover:text-dark-cyan transition duration-150">For Investors</a></li>
+                        <li><a href="#vision" class="hover:text-dark-cyan transition duration-150">Marketplace</a></li>
                         <li><a href="#partners" class="hover:text-dark-cyan transition duration-150">Become a Partner</a></li>
                     </ul>
                 </div>
@@ -488,7 +760,7 @@
             const form = event.target;
             const formData = new FormData(form);
             
-            // Simulate sending data (In a real app, this is where you'd use fetch() to send data to Firestore or a third-party service)
+            // Simulate sending data
             const submissionData = {};
             formData.forEach((value, key) => { submissionData[key] = value; });
             submissionData.type = currentModalType;
@@ -509,13 +781,38 @@
             }, 4000); 
         }
 
+        // Function: Provides visual feedback for mailto links
+        function handleMailtoClick(elementId, originalText) {
+            const btn = document.getElementById(elementId);
+            if (!btn) return;
+            
+            const tempText = 'Opening Email...';
+            // Store original content and replace it immediately
+            const originalHTML = btn.innerHTML;
+            
+            // Only change if the button contains the original text (to handle complex content)
+            if (originalHTML.includes(originalText)) {
+                btn.innerHTML = originalHTML.replace(originalText, tempText);
+                
+                // Set a timeout to revert the text, giving the browser time to launch the mail client
+                setTimeout(() => {
+                    // Revert the text back to the original if it still contains the temp text
+                    if (btn.innerHTML.includes(tempText)) {
+                        btn.innerHTML = originalHTML;
+                    }
+                }, 100);
+            }
+        }
+
         // Close modal using Escape key
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape' && modal.classList.contains('active')) {
                 closeModal(event);
             }
         });
+
     </script>
 
 </body>
 </html>
+
