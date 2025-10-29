@@ -3,302 +3,344 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Credi Pay: Your Financial Partner</title>
+    <title>Credi Pay: Next-Generation Financial Platform for Bangladesh</title>
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #008B8B; /* Dark Cyan */
+            --primary-color: #008B8B;
             --primary-dark: #006D6D;
-            --secondary-color: #FFC300; /* Gold/Yellow for action/highlights */
+            --primary-light: #4FD1C7;
+            --secondary-color: #FFC300;
+            --accent-color: #667EEA;
+            --dark-bg: #0F172A;
+            --darker-bg: #0A0F1C;
         }
+        
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
+            background-color: var(--darker-bg);
+            color: #F8FAFC;
         }
-        .bg-dark-cyan {
-            background-color: var(--primary-color);
-        }
-        .text-dark-cyan {
-            color: var(--primary-color);
-        }
-        .btn-primary {
-            background-color: var(--primary-color);
-            transition: all 0.2s ease-in-out;
-        }
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(0, 139, 139, 0.3), 0 2px 4px -2px rgba(0, 139, 139, 0.3);
-        }
-        .bg-dark-cyan-gradient {
-            background: linear-gradient(135deg, #008B8B, #006D6D);
-        }
-        .icon-shadow {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 40, 40, 0.05);
-        }
-        /* Modal Backdrop */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.75);
+        
+        /* Enhanced gradient backgrounds */
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 30%, var(--accent-color) 100%);
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease;
-        }
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        .modal-content {
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
-        .modal-overlay.active .modal-content {
-            transform: scale(1);
+            padding: 4rem 0;
         }
         
-        /* === Investment Marketplace Section (#vision) === */
-        .investment-bg {
-            background: linear-gradient(145deg, #1f2937, #111827);
+        .hero-gradient::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx=".5" cy=".5" r=".5"><stop offset="0%" stop-color="%23ffffff" stop-opacity=".05"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23a)"/></svg>');
+            opacity: 0.4;
         }
-        .text-gradient {
-            background-image: linear-gradient(45deg, var(--primary-color), #4cda99);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+        
+        .section-gradient {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
         }
-        /* Base card style - this used to hold the full styling, now mostly for hover scale */
-        .asset-card {
+        
+        .card-gradient {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Enhanced animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(0, 139, 139, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(0, 139, 139, 0.8); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        /* Enhanced buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
             transition: all 0.3s ease;
-            border: none; /* Removed default border */
-            background: none; /* Removed default background */
-        }
-        .asset-card:hover {
-            transform: scale(1.05); /* Increased scale for better visual feedback */
-        }
-
-        /* Styles for the background image inside the asset card */
-        .asset-bg-card {
-            height: 150px; /* Fixed height for visual consistency */
-            background-size: cover;
-            background-position: center;
             position: relative;
             overflow: hidden;
-            border-radius: 0.75rem; /* Matches the card rounding */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
         }
-
-        /* Dark gradient overlay for text readability on images */
-        .asset-bg-card::before {
+        
+        .btn-primary::before {
             content: "";
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.1));
-            z-index: 10;
-            border-radius: 0.75rem;
-            transition: background 0.3s ease;
-        }
-
-        /* Hover effect to slightly lighten the overlay */
-        .asset-card:hover .asset-bg-card::before {
-             background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
-        }
-
-        .asset-content {
-            position: relative;
-            z-index: 20;
-            padding: 1rem;
-            color: white;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-        }
-
-        /* Specific background images for assets */
-        .asset-realestate { background-image: url('https://imgur.com/Hf3uWdB.png'); } /* Building skyline */
-        .asset-gold { background-image: url('https://imgur.com/EuuCYM2.png'); } /* Gold bars/coins */
-        .asset-bonds { background-image: url('https://imgur.com/16Su6UT.png'); } /* Abstract finance graph/paperwork */
-        .asset-agriculture { background-image: url('https://imgur.com/X99QETi.png'); } /* Farmland/crops */
-
-
-        /* === Problem Section (Full Background Image) === */
-        .problem-card-bg {
-            height: 250px; /* Fixed height for consistent cards */
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            color: white;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Dark gradient overlay for text readability */
-        .problem-card-bg::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1));
-            border-radius: 0.75rem; /* Match card rounding */
-            z-index: 10;
-            transition: background 0.3s ease;
-        }
-
-        /* Ensure content is above the overlay */
-        .problem-card-content {
-            position: relative;
-            z-index: 20;
-            padding: 1.5rem; 
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end; /* Pin text to the bottom */
-            text-align: left;
-        }
-
-        /* Hover effect on card to make the image slightly clearer */
-        .problem-card-bg:hover::before {
-             background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
-        }
-
-        /* === Solutions Section (SLIDESHOW STYLES ADDED) */
-        .solutions-bg {
-            position: relative; /* Needed for absolute positioning of slideshow-container */
-            overflow: hidden;
-            /* Static background properties removed to be handled by the slideshow */
-        }
-        
-        /* Slideshow Container */
-        .slideshow-container {
-            position: absolute;
-            top: 0;
-            left: 0;
+            left: -100%;
             width: 100%;
             height: 100%;
-            overflow: hidden;
-            z-index: 1; /* Below the content */
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
         }
         
-        /* Slideshow Dark Overlay - REDUCED OPACITY FROM 0.7 TO 0.5 */
-        .slideshow-container::before {
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 139, 139, 0.3);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #F59E0B 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3);
+        }
+        
+        /* Enhanced cards */
+        .feature-card {
+            transition: all 0.4s ease;
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(79, 209, 199, 0.3);
+        }
+        
+        /* Glowing elements */
+        .glow-primary {
+            box-shadow: 0 0 20px rgba(0, 139, 139, 0.4);
+        }
+        
+        .glow-secondary {
+            box-shadow: 0 0 20px rgba(255, 195, 0, 0.4);
+        }
+        
+        /* Enhanced navigation */
+        .nav-glass {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Progress bars and indicators */
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+            border-radius: 3px;
+            transition: width 1s ease-in-out;
+        }
+        
+        /* Enhanced investment cards */
+        .investment-card {
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .investment-card::before {
             content: "";
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.5); /* REDUCED: Dark overlay for better contrast */
-            z-index: 5;
-        }
-        
-        /* Individual Slide */
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(135deg, rgba(79, 209, 199, 0.1) 0%, rgba(102, 126, 234, 0.1) 100%);
             opacity: 0;
-            transition: opacity 1.5s ease-in-out; /* Smooth cross-fade transition */
+            transition: opacity 0.4s ease;
         }
-        .slide.active {
+        
+        .investment-card:hover::before {
             opacity: 1;
         }
-
-
-        /* Styling for the solution cards to ensure content visibility and lift them above the overlay */
-        .solution-card {
-            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white card */
-            backdrop-filter: blur(8px); /* Add a slight blur effect for glassmorphism */
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative; /* Bring card content above the overlay */
-            z-index: 10;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        .investment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
-        .solution-card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        
+        /* Stats counter */
+        .stat-number {
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-
-        /* FIXED: Market Opportunity buttons - removed hover dependency */
-        .market-opportunity-btn {
-            background-color: #374151; /* gray-700 equivalent */
-            color: white;
-            font-weight: bold;
+        
+        /* Enhanced footer */
+        .footer-gradient {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #0A0F1C 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .market-opportunity-btn p:first-child {
-            color: white !important;
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-        .market-opportunity-btn p:last-child {
-            color: #9CA3AF !important; /* gray-400 equivalent */
+        
+        ::-webkit-scrollbar-track {
+            background: var(--darker-bg);
         }
-
-        /* FIXED: Investor CTA button in "Believe in Our Vision" section */
-        .investor-cta-btn {
-            background-color: #FFC300; /* secondary-color */
-            color: #1F2937; /* gray-900 equivalent */
-            font-weight: bold;
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 4px;
         }
-        .investor-cta-btn:hover {
-            background-color: #FBBF24; /* yellow-400 equivalent */
+        
+        /* Enhanced mobile menu */
+        .mobile-menu {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Particle background for hero */
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s infinite linear;
+        }
+        
+        /* Enhanced form elements */
+        .form-input {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 139, 139, 0.2);
+        }
+        
+        /* Enhanced solution section */
+        .solution-bg {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .solution-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(79, 209, 199, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+            z-index: 0;
         }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="antialiased">
 
-    <!-- 1. Header / Navigation (FIXED FOR MOBILE) -->
-    <header class="shadow-md sticky top-0 z-50 bg-white">
+    <!-- Enhanced Header with Glass Effect -->
+    <header class="fixed w-full z-50 nav-glass">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
                 
-                <!-- LOGO -->
-                <a href="#hero" class="flex items-center">
-                    <img 
-                        src="https://i.imgur.com/9L6DzoA.png" 
-                        alt="Credi Pay Logo" 
-                        class="h-8 w-auto" 
-                        onerror="this.onerror=null; this.src='https://placehold.co/120x32/008B8B/ffffff?text=Credi+Pay+Logo';" 
-                    />
+                <!-- Enhanced Logo -->
+                <a href="#hero" class="flex items-center group">
+                    <div class="relative">
+                        <img 
+                            src="https://i.imgur.com/9L6DzoA.png" 
+                            alt="Credi Pay Logo" 
+                            class="h-8 w-auto transition-transform duration-300 group-hover:scale-110" 
+                            onerror="this.onerror=null; this.src='https://placehold.co/120x32/008B8B/ffffff?text=Credi+Pay+Logo';" 
+                        />
+                        <div class="absolute -inset-1 bg-primary-color opacity-20 blur-sm group-hover:opacity-30 transition-opacity duration-300 rounded-lg"></div>
+                    </div>
                 </a>
                 
-                <!-- Desktop Links & CTA (Hidden on small screens) -->
-                <div class="hidden md:flex items-center space-x-6">
-                    <!-- Links -->
-                    <a href="#solutions" class="text-gray-600 hover:text-dark-cyan font-medium transition duration-150">Features</a>
-                    <a href="#vision" class="text-gray-600 hover:text-dark-cyan font-medium transition duration-150">Marketplace</a>
-                    <a href="#partners" class="text-gray-600 hover:text-dark-cyan font-medium transition duration-150">Partners</a>
-                    <!-- Desktop CTA -->
-                    <button onclick="openModal('waitlist')" class="btn-primary text-white font-semibold py-2 px-6 rounded-xl shadow-lg hover:shadow-xl">Join Waitlist</button>
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#solutions" class="text-gray-300 hover:text-white font-medium transition duration-300 relative group">
+                        Features
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-color to-accent-color transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#vision" class="text-gray-300 hover:text-white font-medium transition duration-300 relative group">
+                        Marketplace
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-color to-accent-color transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#partners" class="text-gray-300 hover:text-white font-medium transition duration-300 relative group">
+                        Partners
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-color to-accent-color transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <button onclick="openModal('waitlist')" class="btn-primary text-white font-semibold py-2.5 px-6 rounded-xl glow-primary">
+                        Join Waitlist
+                    </button>
                 </div>
     
-                <!-- Mobile Menu Toggle & Mobile CTA (Visible on small screens) -->
+                <!-- Mobile Menu Toggle -->
                 <div class="flex items-center md:hidden">
-                    <!-- Mobile CTA (Smaller for mobile screens) -->
-                    <button onclick="openModal('waitlist')" class="btn-primary text-white font-semibold py-1.5 px-4 rounded-xl shadow-lg text-sm mr-4">Waitlist</button>
+                    <button onclick="openModal('waitlist')" class="btn-primary text-white font-semibold py-1.5 px-4 rounded-xl text-sm mr-4 glow-primary">
+                        Waitlist
+                    </button>
                     
-                    <!-- Hamburger Button -->
-                    <button id="mobile-menu-button" type="button" class="p-2 rounded-md text-gray-400 hover:text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-dark-cyan transition duration-150" aria-expanded="false">
-                        <!-- Icon when menu is closed -->
+                    <button id="mobile-menu-button" type="button" class="p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 transition duration-150" aria-expanded="false">
                         <svg id="menu-icon-open" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
-                        <!-- Icon when menu is open -->
                         <svg id="menu-icon-close" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -306,675 +348,721 @@
                 </div>
             </div>
             
-            <!-- Mobile Menu Content (Hidden by default, toggled by JS) -->
-            <div class="md:hidden hidden" id="mobile-menu">
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden mobile-menu absolute top-full left-0 w-full shadow-xl" id="mobile-menu">
                 <div class="pt-2 pb-3 space-y-1">
-                    <a href="#solutions" onclick="closeMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-dark-cyan transition duration-150">Features</a>
-                    <a href="#vision" onclick="closeMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-dark-cyan transition duration-150">Marketplace</a>
-                    <a href="#partners" onclick="closeMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-dark-cyan transition duration-150">Partners</a>
+                    <a href="#solutions" onclick="closeMobileMenu()" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:bg-gray-800 hover:text-white transition duration-150 border-l-4 border-transparent hover:border-primary-color">Features</a>
+                    <a href="#vision" onclick="closeMobileMenu()" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:bg-gray-800 hover:text-white transition duration-150 border-l-4 border-transparent hover:border-primary-color">Marketplace</a>
+                    <a href="#partners" onclick="closeMobileMenu()" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:bg-gray-800 hover:text-white transition duration-150 border-l-4 border-transparent hover:border-primary-color">Partners</a>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- 2. Hero Section -->
-    <section id="hero" class="bg-dark-cyan-gradient text-white py-20 sm:py-32">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <!-- Enhanced Hero Section with Particles -->
+    <section id="hero" class="pt-20 pb-16 hero-gradient relative overflow-hidden">
+        <div class="particles-container" id="particles-container"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-10">
             <!-- Text Content -->
             <div class="space-y-6">
-                <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight">
-                    Financial Health for Everyone in <span class="block">Bangladesh.</span>
+                <div class="inline-flex items-center px-4 py-2 rounded-full bg-black/20 backdrop-blur-sm border border-white/10 text-sm text-white mb-4">
+                    <span class="w-2 h-2 bg-primary-light rounded-full mr-2 pulse-glow"></span>
+                    Revolutionizing Financial Inclusion in Bangladesh
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-black leading-tight">
+                    <span class="block bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">Borrow From Your Future,To Invest In Your Present</span>
+                    <span class="block bg-clip-text text-transparent bg-gradient-to-r from-from-white to-gray-300">To Invest In Your Present</span>
                 </h1>
-                <p class="text-xl text-gray-200">
-                    Get salary-linked credit, build savings effortlessly, and join secure digital savings circles. A complete platform for users and a scalable opportunity for investors.
+                
+                <p class="text-lg text-gray-200 max-w-lg">
+                    Bangladesh's first integrated financial platform with salary-linked credit, automated savings circles, and collective investment opportunities designed for everyone.
                 </p>
-                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
-                    <!-- User Waitlist Button (Modal) -->
-                    <button onclick="openModal('waitlist')" class="btn-primary text-white font-bold py-3 px-8 rounded-xl text-lg shadow-2xl shadow-[rgba(0,139,139,0.5)] border-2 border-white/50">
-                        Join the Waitlist
+                
+                <!-- Stats -->
+                <div class="flex space-x-6 pt-4">
+                    <div>
+                        <div class="stat-number text-2xl sm:text-3xl font-black">55M+</div>
+                        <div class="text-sm text-gray-300">Potential Users</div>
+                    </div>
+                    <div>
+                        <div class="stat-number text-2xl sm:text-3xl font-black">$900B+</div>
+                        <div class="text-sm text-gray-300">Market Opportunity</div>
+                    </div>
+                    <div>
+                        <div class="stat-number text-2xl sm:text-3xl font-black"><1%</div>
+                        <div class="text-sm text-gray-300">Current Penetration</div>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-6">
+                    <button onclick="openModal('waitlist')" class="btn-primary text-white font-bold py-3 px-6 rounded-xl text-base glow-primary flex items-center justify-center">
+                        <span>Join the Financial Revolution</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
                     </button>
-                    <!-- Investor Contact Button -->
-                    <a id="invest-btn-hero" href="mailto:irfankarim67@gmail.com?subject=Investment Inquiry for Credi Pay" onclick="handleMailtoClick('invest-btn-hero', 'Contact for Investment Info');" class="bg-white text-dark-cyan font-bold py-3 px-8 rounded-xl text-lg shadow-md hover:bg-gray-100 transition duration-150">
-                        Contact for Investment Info
+                    
+                    <a id="invest-btn-hero" href="mailto:irfankarim67@gmail.com?subject=Investment Inquiry for Credi Pay" onclick="handleMailtoClick('invest-btn-hero', 'Investor Information');" class="btn-secondary text-gray-900 font-bold py-3 px-6 rounded-xl text-base flex items-center justify-center">
+                        <span>Investor Information</span>
+                        <i class="fas fa-chart-line ml-2"></i>
                     </a>
                 </div>
             </div>
 
-            <!-- Visual Placeholder -->
-            <div class="flex justify-center">
+            <!-- Enhanced Visual - Made Larger -->
+            <div class="relative mt-8 md:mt-0">
+                <div class="absolute -inset-4 bg-gradient-to-r from-primary-color to-accent-color rounded-3xl opacity-20 blur-xl"></div>
                 <img 
                     src="https://i.imgur.com/iIFcy9i.png" 
-                    alt="Credi Pay Mobile App Interface Screenshot" 
-                    class="w-full max-w-lg md:max-w-2xl h-auto rounded-3xl rotate-6 transform shadow-2xl transition-transform duration-500 hover:rotate-3"
+                    alt="Credi Pay Mobile App Interface" 
+                    class="relative w-full max-w-md mx-auto rounded-3xl shadow-2xl float-animation"
                 >
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. The Problem We Solve -->
-    <section id="problem" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-12">Solving Real Financial Pain Points.</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
-
-                <!-- Problem Card 1: Credit Cards Are Hard to Get -->
-                <div class="problem-card-bg rounded-xl shadow-lg border-2 border-gray-100 hover:shadow-xl hover:border-dark-cyan transition duration-300 overflow-hidden" 
-                    style="background-image: url('https://imgur.com/YA24NCO.png');">
-                    <div class="problem-card-content">
-                        <h3 class="text-xl font-bold">Credit Cards Are Hard to Get</h3>
-                        <p class="text-gray-200 text-sm mt-1">High eligibility and long paperwork exclude 30M+ credit-worthy users.</p>
-                    </div>
-                </div>
-
-                <!-- Problem Card 2: The Month-End Cash Crunch -->
-                <div class="problem-card-bg rounded-xl shadow-lg border-2 border-gray-100 hover:shadow-xl hover:border-dark-cyan transition duration-300 overflow-hidden" 
-                    style="background-image: url('https://imgur.com/yVN6sfA.png');">
-                    <div class="problem-card-content">
-                        <h3 class="text-xl font-bold">The Month-End Cash Crunch</h3>
-                        <p class="text-gray-200 text-sm mt-1">Workers face critical cash shortages right before the next payday arrives.</p>
-                    </div>
-                </div>
-
-                <!-- Problem Card 3: Stress from Unexpected Bills -->
-                <div class="problem-card-bg rounded-xl shadow-lg border-2 border-gray-100 hover:shadow-xl hover:border-dark-cyan transition duration-300 overflow-hidden" 
-                    style="background-image: url('https://imgur.com/TLMJ4Li.png');">
-                    <div class="problem-card-content">
-                        <h3 class="text-xl font-bold">Stress from Unexpected Bills</h3>
-                        <p class="text-gray-200 text-sm mt-1">Hospital fees and sudden expenses create severe, immediate financial distress.</p>
-                    </div>
-                </div>
-
-                <!-- Problem Card 4: No Trusted BNPL -->
-                <div class="problem-card-bg rounded-xl shadow-lg border-2 border-gray-100 hover:shadow-xl hover:border-dark-cyan transition duration-300 overflow-hidden" 
-                    style="background-image: url('https://imgur.com/0hgzw2q.png');">
-                    <div class="problem-card-content">
-                        <h3 class="text-xl font-bold">No Trusted BNPL</h3>
-                        <p class="text-gray-200 text-sm mt-1">A lack of salary-linked, regulated Buy Now Pay Later options for essentials.</p>
-                    </div>
+                
+                <!-- Floating elements -->
+                <div class="absolute -top-4 -right-4 w-16 h-16 bg-primary-light/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/10">
+                    <i class="fas fa-shield-alt text-primary-light text-lg"></i>
                 </div>
                 
-                <!-- Problem Card 5: No Passive Wealth Building -->
-                <div class="problem-card-bg rounded-xl shadow-lg border-2 border-gray-100 hover:shadow-xl hover:border-dark-cyan transition duration-300 overflow-hidden" 
-                    style="background-image: url('https://imgur.com/VgdO9Rx.png');">
-                    <div class="problem-card-content">
-                        <h3 class="text-xl font-bold">No Passive Wealth Building</h3>
-                        <p class="text-gray-200 text-sm mt-1">No automated tools to turn small daily change into real, long-term savings.</p>
-                    </div>
+                <div class="absolute -bottom-4 -left-4 w-14 h-14 bg-accent-color/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/10">
+                    <i class="fas fa-rocket text-accent-color text-base"></i>
                 </div>
-
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+            <div class="flex flex-col items-center text-gray-300">
+                <span class="text-sm mb-2">Scroll to explore</span>
+                <div class="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
+                    <div class="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-bounce"></div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 4. Our Core Solutions -->
-    <section id="solutions" class="py-20 solutions-bg">
-        <!-- SLIDESHOW CONTAINER (New) -->
-        <div id="slideshow-container" class="slideshow-container">
-            <!-- Slides will be added here by JavaScript -->
-        </div>
-        <!-- END SLIDESHOW CONTAINER -->
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-center text-white mb-16">Your All-in-One Financial Health Platform</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <!-- Solution Card 1: Credit Line -->
-                <div class="p-8 solution-card rounded-2xl shadow-xl border-t-4 border-dark-cyan transform hover:scale-[1.02] transition duration-300">
-                    <div class="p-3 bg-white/20 rounded-full w-fit mb-4 icon-shadow">
-                        <svg class="w-8 h-8 text-secondary-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-3">Credit Line & BNPL</h3>
-                    <p class="text-gray-200">Salary-backed credit for daily essentials. Auto-debit repayment via NPSB for near-zero defaults, making credit accessible and responsible.</p>
-                </div>
-
-                <!-- Solution Card 2: Digital Samiti -->
-                <div class="p-8 solution-card rounded-2xl shadow-xl border-t-4 border-dark-cyan transform hover:scale-[1.02] transition duration-300">
-                    <div class="p-3 bg-white/20 rounded-full w-fit mb-4 icon-shadow">
-                        <svg class="w-8 h-8 text-secondary-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.292"></path></svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-3">Digital Samiti</h3>
-                    <p class="text-gray-200">Digital, automated, and secure rotating savings circles. Built-in virality ensures user acquisition via social networks and strong user retention.</p>
-                </div>
-
-                <!-- Solution Card 3: Round-Up Investing -->
-                <div class="p-8 solution-card rounded-2xl shadow-xl border-t-4 border-dark-cyan transform hover:scale-[1.02] transition duration-300">
-                    <div class="p-3 bg-white/20 rounded-full w-fit mb-4 icon-shadow">
-                        <svg class="w-8 h-8 text-secondary-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-3">Round-Up Investments</h3>
-                    <p class="text-gray-200">Micro-investing spare change from every purchase into regulated mutual funds. Creates loyal, financially healthy users who generate AUM revenue.</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. How It Works (For Users) -->
-    <section id="how-it-works" class="py-20 bg-dark-cyan-gradient text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl sm:text-4xl font-extrabold mb-12">Financial Freedom in 3 Steps</h2>
-            <div class="relative flex justify-between items-start pt-12">
-                
-                <!-- Timeline Line -->
-                <div class="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4/5 h-1 bg-white/50 rounded-full"></div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-left">
-                    
-                    <!-- Step 1 -->
-                    <div class="relative flex flex-col items-center md:items-start p-6 bg-white/10 rounded-xl">
-                        <div class="bg-white text-dark-cyan font-bold w-12 h-12 flex items-center justify-center rounded-full text-xl shadow-lg mb-4">1</div>
-                        <h3 class="text-xl font-bold mb-2">Link & Join</h3>
-                        <p class="text-gray-200">Connect your salary account via your employer to instantly verify your creditworthiness.</p>
-                    </div>
-
-                    <!-- Step 2 -->
-                    <div class="relative flex flex-col items-center md:items-start p-6 bg-white/10 rounded-xl">
-                        <div class="bg-white text-dark-cyan font-bold w-12 h-12 flex items-center justify-center rounded-full text-xl shadow-lg mb-4">2</div>
-                        <h3 class="text-xl font-bold mb-2">Spend & Save</h3>
-                        <p class="text-gray-200">Use BNPL for essentials, join a secure Digital Samiti, and automatically invest spare change.</p>
-                    </div>
-
-                    <!-- Step 3 -->
-                    <div class="relative flex flex-col items-center md:items-start p-6 bg-white/10 rounded-xl">
-                        <div class="bg-white text-dark-cyan font-bold w-12 h-12 flex items-center justify-center rounded-full text-xl shadow-lg mb-4">3</div>
-                        <h3 class="text-xl font-bold mb-2">Grow Automatically</h3>
-                        <p class="text-gray-200">Repay seamlessly via auto-debit and watch your credit score and wealth climb effortlessly.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- 6. Investment Marketplace (With Images) -->
-    <section id="vision" class="py-20 investment-bg text-white">
+    <!-- Enhanced Problem Section -->
+    <section id="problem" class="py-20 section-gradient relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-4">
-                <span class="text-gradient">The Collective Investment Revolution</span>
-            </h2>
-            <p class="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto">
-                Pool resources with thousands of others to invest in assets once reserved for the wealthy elite
-            </p>
-
-            <!-- How It Works Visualization -->
-            <div class="mb-16">
-                <div class="max-w-4xl mx-auto">
-                    <h3 class="text-2xl font-bold text-center mb-8 text-secondary-color">How Collective Investing Works</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                        
-                        <!-- Step 1 -->
-                        <div class="text-center p-6 bg-gray-800 rounded-xl border border-gray-700 hover:border-dark-cyan transition duration-300">
-                            <div class="w-16 h-16 bg-dark-cyan rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">1</div>
-                            <h4 class="font-bold text-white mb-2">Start Small</h4>
-                            <p class="text-sm text-gray-400">Begin with as little as ৳500 from your round-up investments or direct contributions</p>
-                        </div>
-
-                        <!-- Step 2 -->
-                        <div class="text-center p-6 bg-gray-800 rounded-xl border border-gray-700 hover:border-dark-cyan transition duration-300">
-                            <div class="w-16 h-16 bg-dark-cyan rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">2</div>
-                            <h4 class="font-bold text-white mb-2">Join a Pool</h4>
-                            <p class="text-sm text-gray-400">Choose from curated investment pools in real estate, gold, bonds, or agriculture</p>
-                        </div>
-
-                        <!-- Step 3 -->
-                        <div class="text-center p-6 bg-gray-800 rounded-xl border border-gray-700 hover:border-dark-cyan transition duration-300">
-                            <div class="w-16 h-16 bg-dark-cyan rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">3</div>
-                            <h4 class="font-bold text-white mb-2">Pool Reaches Goal</h4>
-                            <p class="text-sm text-gray-400">When the pool hits its target, we acquire the asset with professional management</p>
-                        </div>
-
-                        <!-- Step 4 -->
-                        <div class="text-center p-6 bg-gray-800 rounded-xl border border-gray-700 hover:border-dark-cyan transition duration-300">
-                            <div class="w-16 h-16 bg-dark-cyan rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">4</div>
-                            <h4 class="font-bold text-white mb-2">Earn Returns</h4>
-                            <p class="text-sm text-gray-400">Receive proportional income and appreciation - trade your shares anytime</p>
-                        </div>
-
-                    </div>
-                </div>
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-black mb-6">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">Solving the Financial Pain Points</span>
+                    <span class="block bg-clip-text text-transparent bg-gradient-to-r from-primary-light to-accent-color">That Hold Bangladesh Back</span>
+                </h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Traditional financial systems exclude millions of credit-worthy Bangladeshis. We're building the infrastructure to change that.
+                </p>
             </div>
 
-            <!-- Impact Visualization -->
-            <div class="mb-16 bg-gray-800 rounded-2xl p-8 border border-gray-700">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                    <div>
-                        <h3 class="text-3xl font-bold text-white mb-4">Turning Small Change into Big Opportunities</h3>
-                        <p class="text-gray-300 mb-6">
-                            What if your daily coffee money could own a piece of a commercial building? Or your grocery savings could invest in government bonds? 
-                            We're making this possible through <span class="text-secondary-color font-semibold">collective investment pools</span>.
-                        </p>
-                        <div class="space-y-3">
-                            <div class="flex items-center">
-                                <span class="text-secondary-color mr-3 text-xl">⚡</span>
-                                <span class="text-white">Break down million-taka barriers with 500-taka contributions</span>
-                            </div>
-                            <div class="flex items-center">
-                                <span class="text-secondary-color mr-3 text-xl">🛡️</span>
-                                <span class="text-white">Regulated, transparent, and professionally managed pools</span>
-                            </div>
-                            <div class="flex items-center">
-                                <span class="text-secondary-color mr-3 text-xl">📈</span>
-                                <span class="text-white">Access returns previously exclusive to institutional investors</span>
-                            </div>
-                        </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Problem Card 1 -->
+                <div class="feature-card rounded-2xl p-6">
+                    <div class="w-14 h-14 rounded-xl bg-primary-color/20 flex items-center justify-center mb-6 glow-primary">
+                        <i class="fas fa-credit-card text-primary-light text-2xl"></i>
                     </div>
-                    <div class="relative">
-                        <div class="bg-gradient-to-br from-dark-cyan to-gray-900 rounded-xl p-6 text-center transform rotate-2 hover:rotate-0 transition-transform duration-300">
-                            <div class="text-5xl mb-4">🏢</div>
-                            <p class="text-lg font-semibold text-white">Example: Commercial Real Estate Pool</p>
-                            <div class="mt-4 space-y-2 text-sm text-gray-300">
-                                <div class="flex justify-between">
-                                    <span>Target Pool Size:</span>
-                                    <span class="text-white">৳5 Crore</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span>Minimum Investment:</span>
-                                    <span class="text-white">৳500</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span>Estimated Returns:</span>
-                                    <span class="text-secondary-color">8-12% annually</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Floating elements for visual interest -->
-                        <div class="absolute -top-4 -left-4 bg-secondary-color text-gray-900 px-3 py-1 rounded-full text-sm font-bold transform -rotate-6">
-                            Coming Soon
+                    <h3 class="text-xl font-bold text-white mb-3">Credit Access Barriers</h3>
+                    <p class="text-gray-400">High eligibility requirements and extensive paperwork exclude 30M+ credit-worthy individuals from formal financial services.</p>
+                    <div class="mt-6 pt-4 border-t border-gray-800">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-400">Market Gap</span>
+                            <span class="text-primary-light font-semibold">30M+ People</span>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                
-                <!-- LEFT SIDE: FOR USERS -->
-                <div class="space-y-8 p-8 bg-gray-900 rounded-2xl border border-gray-700 shadow-2xl">
-                    <div class="space-y-4">
-                        <h3 class="text-3xl font-extrabold text-white">Your Ticket to Premium Assets</h3>
-                        <p class="text-xl text-gray-300">
-                            With as little as <span class="text-secondary-color font-bold">৳500</span>, own a piece of Bangladesh's most valuable assets through our collective investment pools.
-                        </p>
+                <!-- Problem Card 2 -->
+                <div class="feature-card rounded-2xl p-6">
+                    <div class="w-14 h-14 rounded-xl bg-primary-color/20 flex items-center justify-center mb-6 glow-primary">
+                        <i class="fas fa-calendar-times text-primary-light text-2xl"></i>
                     </div>
-                    
-                    <div class="grid grid-cols-1 gap-6">
-                        <!-- Investment Assets Grid (UPDATED WITH IMAGES) -->
-                        <div>
-                            <h4 class="font-bold text-xl text-dark-cyan mb-4">Access Premium Investment Classes:</h4>
-                            <div class="grid grid-cols-2 gap-4">
-                                
-                                <!-- Asset 1: Commercial Real Estate -->
-                                <div class="asset-card transition duration-300 rounded-xl">
-                                    <div class="asset-bg-card asset-realestate rounded-xl">
-                                        <div class="asset-content">
-                                            <p class="font-bold text-lg leading-tight">Commercial Real Estate</p>
-                                            <p class="text-xs text-gray-200 mt-1">Own parts of office buildings & shopping malls</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Asset 2: Gold & Precious Metals -->
-                                <div class="asset-card transition duration-300 rounded-xl">
-                                    <div class="asset-bg-card asset-gold rounded-xl">
-                                        <div class="asset-content">
-                                            <p class="font-bold text-lg leading-tight">Gold & Precious Metals</p>
-                                            <p class="text-xs text-gray-200 mt-1">Secure gold investments with insured storage</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Asset 3: Government Bonds -->
-                                <div class="asset-card transition duration-300 rounded-xl">
-                                    <div class="asset-bg-card asset-bonds rounded-xl">
-                                        <div class="asset-content">
-                                            <p class="font-bold text-lg leading-tight">Government Bonds</p>
-                                            <p class="text-xs text-gray-200 mt-1">Low-risk, high-security national bonds</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Asset 4: Agricultural Land -->
-                                <div class="asset-card transition duration-300 rounded-xl">
-                                    <div class="asset-bg-card asset-agriculture rounded-xl">
-                                        <div class="asset-content">
-                                            <p class="font-bold text-lg leading-tight">Agricultural Land</p>
-                                            <p class="text-xs text-gray-200 mt-1">Collective farmland ownership with managed returns</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="space-y-4">
-                            <h4 class="font-bold text-lg text-dark-cyan">Why This Changes Everything:</h4>
-                            <ul class="space-y-3 text-gray-300">
-                                <li class="flex items-start">
-                                    <span class="text-secondary-color mr-3 font-bold text-xl">✓</span>
-                                    <p><strong class="text-white">Democratize Wealth Building:</strong> No more being excluded from lucrative investments due to high entry costs</p>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-secondary-color mr-3 font-bold text-xl">✓</span>
-                                    <p><strong class="text-white">Professional Management:</strong> Expert teams handle due diligence, acquisition, and management</p>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-secondary-color mr-3 font-bold text-xl">✓</span>
-                                    <p><strong class="text-white">Full Transparency:</strong> Track your investments in real-time with clear reporting</p>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-secondary-color mr-3 font-bold text-xl">✓</span>
-                                    <p><strong class="text-white">Liquid & Flexible:</strong> Buy or sell your pool shares through our secondary marketplace</p>
-                                </li>
-                            </ul>
+                    <h3 class="text-xl font-bold text-white mb-3">Month-End Cash Shortages</h3>
+                    <p class="text-gray-400">Workers and professionals face critical cash flow gaps in the days leading up to their next paycheck.</p>
+                    <div class="mt-6 pt-4 border-t border-gray-800">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-400">Affected</span>
+                            <span class="text-primary-light font-semibold">80% of Workers</span>
                         </div>
                     </div>
-
-                    <!-- User Call to Action -->
-                    <button onclick="openModal('waitlist')" class="w-full btn-primary text-white font-bold py-4 rounded-xl shadow-xl hover:shadow-2xl mt-4 text-lg">
-                        Reserve Your Spot in Our First Investment Pools → Join Waitlist
-                    </button>
                 </div>
 
-                <!-- RIGHT SIDE: FOR INVESTORS -->
-                <div class="space-y-8 p-8 bg-gray-900 rounded-2xl border border-gray-700 shadow-2xl">
-                    <div class="space-y-4">
-                        <h3 class="text-3xl font-extrabold text-white">The Platform Economy for Premium Assets</h3>
-                        <p class="text-xl text-gray-300">
-                            We're building Bangladesh's first regulated marketplace for fractional ownership of high-value assets.
-                        </p>
+                <!-- Problem Card 3 -->
+                <div class="feature-card rounded-2xl p-6">
+                    <div class="w-14 h-14 rounded-xl bg-primary-color/20 flex items-center justify-center mb-6 glow-primary">
+                        <i class="fas fa-file-invoice-dollar text-primary-light text-2xl"></i>
                     </div>
-
-                    <div class="space-y-6">
-                        <h4 class="text-2xl font-bold text-dark-cyan">Why This is Revolutionary:</h4>
-                        <ul class="space-y-4 text-gray-300">
-                            <li class="flex items-start">
-                                <span class="text-secondary-color mr-3 text-2xl">🔥</span>
-                                <div>
-                                    <p class="font-semibold text-white">Unlocks Trillions in Dead Capital</p>
-                                    <p class="text-sm mt-1">Bangladesh has over $900B in 'dead capital' - assets that can't be easily traded or used as collateral. We're making them liquid.</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-secondary-color mr-3 text-2xl">💰</span>
-                                <div>
-                                    <p class="font-semibold text-white">Multiple Revenue Streams</p>
-                                    <p class="text-sm mt-1">Platform fees (1-2%), transaction commissions, asset management fees, and premium subscription services.</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-secondary-color mr-3 text-2xl">📊</span>
-                                <div>
-                                    <p class="font-semibold text-white">Built-in Network Effects</p>
-                                    <p class="text-sm mt-1">Each new pool creates more liquidity, attracting more users and better assets in a virtuous cycle.</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-secondary-color mr-3 text-2xl">🛡️</span>
-                                <div>
-                                    <p class="font-semibold text-white">Regulatory First-Mover Advantage</p>
-                                    <p class="text-sm mt-1">Working with Bangladesh Bank and BSEC to establish the framework for collective investment platforms.</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="pt-4 border-t border-gray-700">
-                        <h4 class="text-2xl font-bold text-dark-cyan mb-4">Market Opportunity:</h4>
-                        <div class="grid grid-cols-2 gap-4 text-sm">
-                            <!-- FIXED: Market Opportunity buttons - removed hover dependency -->
-                            <div class="p-3 market-opportunity-btn rounded-lg text-center">
-                                <p class="font-bold">$900B+</p>
-                                <p class="text-gray-400">Untapped Asset Value</p>
-                            </div>
-                            <div class="p-3 market-opportunity-btn rounded-lg text-center">
-                                <p class="font-bold">55M+</p>
-                                <p class="text-gray-400">Potential Investors</p>
-                            </div>
-                            <div class="p-3 market-opportunity-btn rounded-lg text-center">
-                                <p class="font-bold"><1%</p>
-                                <p class="text-gray-400">Current Market Penetration</p>
-                            </div>
-                            <div class="p-3 market-opportunity-btn rounded-lg text-center">
-                                <p class="font-bold">80%</p>
-                                <p class="text-gray-400">Using Informal Savings</p>
-                            </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Unexpected Expense Stress</h3>
+                    <p class="text-gray-400">Medical emergencies, home repairs, and other sudden costs create immediate financial distress for families.</p>
+                    <div class="mt-6 pt-4 border-t border-gray-800">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-400">Impact</span>
+                            <span class="text-primary-light font-semibold">High Stress</span>
                         </div>
                     </div>
-
-                    <!-- Investor Call to Action -->
-                    <a id="invest-btn-marketplace" href="mailto:irfankarim67@gmail.com?subject=Investment Inquiry for Credi Pay" onclick="handleMailtoClick('invest-btn-marketplace', 'Contact Our Team');" class="w-full inline-block text-center investor-cta-btn py-4 rounded-xl shadow-xl hover:bg-yellow-400 transition duration-150 mt-4 text-lg">
-                        Lead the Investment Democratization Movement → Contact Our Team
-                    </a>
                 </div>
             </div>
             
-            <!-- Testimonial Placeholder -->
-            <div class="mt-16 text-center p-8 bg-gray-800 rounded-2xl border-l-4 border-secondary-color shadow-lg max-w-2xl mx-auto">
-                <p class="italic text-xl text-gray-300 mb-4">
-                    <span class="text-4xl leading-none mr-2">"</span>For the first time, my small savings can work as hard as a millionaire's money. This changes everything for ordinary Bangladeshis.<span class="text-4xl leading-none ml-2">"</span>
-                </p>
-                <p class="text-sm font-semibold text-dark-cyan">- Future Credi Pay User</p>
+            <!-- Additional problem cards in second row -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <!-- Problem Card 4 -->
+                <div class="feature-card rounded-2xl p-6">
+                    <div class="w-14 h-14 rounded-xl bg-primary-color/20 flex items-center justify-center mb-6 glow-primary">
+                        <i class="fas fa-store-slash text-primary-light text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">No Trusted BNPL Options</h3>
+                    <p class="text-gray-400">Lack of regulated, salary-linked "Buy Now Pay Later" services for essential purchases creates reliance on informal credit.</p>
+                    <div class="mt-6 pt-4 border-t border-gray-800">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-400">Solution Gap</span>
+                            <span class="text-primary-light font-semibold">First in Market</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Problem Card 5 -->
+                <div class="feature-card rounded-2xl p-6">
+                    <div class="w-14 h-14 rounded-xl bg-primary-color/20 flex items-center justify-center mb-6 glow-primary">
+                        <i class="fas fa-piggy-bank text-primary-light text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Limited Wealth Building</h3>
+                    <p class="text-gray-400">No automated tools to convert daily spending into long-term savings and investments for the mass market.</p>
+                    <div class="mt-6 pt-4 border-t border-gray-800">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-400">Savings Rate</span>
+                            <span class="text-primary-light font-semibold">< 5% of Income</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 7. For Investors & Partners -->
-    <section id="investors" class="py-20 bg-gray-50">
+    <!-- Enhanced Solutions Section -->
+    <section id="solutions" class="py-20 solution-bg relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-black mb-6">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">Your Complete Financial Health Platform</span>
+                    <span class="block bg-clip-text text-transparent bg-gradient-to-r from-primary-light to-accent-color">Three Powerful Solutions in One App</span>
+                </h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    We've built an integrated ecosystem that addresses credit, savings, and investment needs through innovative technology
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Solution 1 -->
+                <div class="feature-card rounded-2xl p-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-primary-color/10 rounded-full -translate-y-16 translate-x-16"></div>
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-color to-primary-light flex items-center justify-center mb-6 glow-primary">
+                            <i class="fas fa-bolt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-white mb-4">Credit Line & BNPL</h3>
+                        <p class="text-gray-400 mb-6">Salary-backed credit for daily essentials with auto-debit repayment for near-zero defaults.</p>
+                        
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-primary-color/20 flex items-center justify-center mr-3">
+                                    <i class="fas fa-check text-primary-light text-sm"></i>
+                                </div>
+                                <span class="text-gray-300">Instant credit approval</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-primary-color/20 flex items-center justify-center mr-3">
+                                    <i class="fas fa-check text-primary-light text-sm"></i>
+                                </div>
+                                <span class="text-gray-300">Salary-linked repayment</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-primary-color/20 flex items-center justify-center mr-3">
+                                    <i class="fas fa-check text-primary-light text-sm"></i>
+                                </div>
+                                <span class="text-gray-300">Near-zero default risk</span>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-4 border-t border-gray-800">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400 text-sm">Default Rate</span>
+                                <span class="text-primary-light font-bold">< 0.5%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Solution 2 -->
+                <div class="feature-card rounded-2xl p-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-accent-color/10 rounded-full -translate-y-16 translate-x-16"></div>
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-color to-primary-light flex items-center justify-center mb-6 glow-primary">
+                            <i class="fas fa-users text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-white mb-4">Digital Samiti</h3>
+                        <p class="text-gray-400 mb-6">Secure, automated rotating savings circles with built-in social network effects.</p>
+                        
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-accent-color/20 flex items-center justify-center mr-3">
+                                    <i class="fas fa-check text-accent-color text-sm"></i>
+                                </div>
+                                <span class="text-gray-300">Digital group savings</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-accent-color/20 flex items-center justify-center mr-3">
+                                    <i class="fas fa-check text-accent-color text-sm"></i>
+                                </div>
+                                <span class="text-gray-300">Automated collections</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-accent-color/20 flex items-center justify-center mr-3">
+                                    <i class="fas fa-check text-accent-color text-sm"></i>
+                                </div>
+                                <span class="text-gray-300">Social network growth</span>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-4 border-t border-gray-800">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400 text-sm">User Acquisition</span>
+                                <span class="text-accent-color font-bold">5-10x Viral</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Solution 3 -->
+                <div class="feature-card rounded-2xl p-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-secondary-color/10 rounded-full -translate-y-16 translate-x-16"></div>
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-secondary-color to-yellow-300 flex items-center justify-center mb-6 glow-secondary">
+                            <i class="fas fa-chart-line text-gray-900 text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-white mb-4">Round-Up Investments</h3>
+                        <p class="text-gray-400 mb-6">Automated micro-investing from daily transactions into regulated mutual funds.</p>
+                        
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-secondary-color/20 flex items-center justify-center mr-3">
+                                    <i class="fas fa-check text-secondary-color text-sm"></i>
+                                </div>
+                                <span class="text-gray-300">Spare change investing</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-secondary-color/20 flex items-center justify-center mr-3">
+                                    <i class="fas fa-check text-secondary-color text-sm"></i>
+                                </div>
+                                <span class="text-gray-300">Regulated funds</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-secondary-color/20 flex items-center justify-center mr-3">
+                                    <i class="fas fa-check text-secondary-color text-sm"></i>
+                                </div>
+                                <span class="text-gray-300">Zero effort savings</span>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-4 border-t border-gray-800">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400 text-sm">Engagement Boost</span>
+                                <span class="text-secondary-color font-bold">3x Daily Usage</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Platform Benefits -->
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="text-3xl font-black stat-number mb-2">95%</div>
+                    <div class="text-gray-400">Reduction in Credit Approval Time</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-black stat-number mb-2">40%</div>
+                    <div class="text-gray-400">Increase in Monthly Savings</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-black stat-number mb-2">10x</div>
+                    <div class="text-gray-400">User Loyalty vs Traditional Banks</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Investment Marketplace Section -->
+    <section id="vision" class="py-20 section-gradient relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-darker-bg to-transparent z-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-black mb-6">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">Democratizing Premium Investments</span>
+                    <span class="block bg-clip-text text-transparent bg-gradient-to-r from-primary-light to-accent-color">Through Collective Power</span>
+                </h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Transforming how 55 million Bangladeshis access high-value investment opportunities previously reserved for the wealthy
+                </p>
+            </div>
+
+            <!-- Investment Process -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+                <div class="text-center">
+                    <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary-color to-primary-light flex items-center justify-center mx-auto mb-4 glow-primary">
+                        <span class="text-white font-black text-2xl">1</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Start Small</h3>
+                    <p class="text-gray-400 text-sm">Begin with as little as ৳500 from round-up investments</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary-color to-primary-light flex items-center justify-center mx-auto mb-4 glow-primary">
+                        <span class="text-white font-black text-2xl">2</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Join a Pool</h3>
+                    <p class="text-gray-400 text-sm">Choose curated investment pools in premium assets</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary-color to-primary-light flex items-center justify-center mx-auto mb-4 glow-primary">
+                        <span class="text-white font-black text-2xl">3</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Pool Reaches Goal</h3>
+                    <p class="text-gray-400 text-sm">We acquire assets with professional management</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary-color to-primary-light flex items-center justify-center mx-auto mb-4 glow-primary">
+                        <span class="text-white font-black text-2xl">4</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Earn Returns</h3>
+                    <p class="text-gray-400 text-sm">Receive proportional income and appreciation</p>
+                </div>
+            </div>
+
+            <!-- Investment Assets -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <!-- Asset 1 -->
+                <div class="investment-card rounded-2xl overflow-hidden bg-gray-900/50 backdrop-blur-sm border border-gray-800">
+                    <div class="h-40 bg-cover bg-center" style="background-image: url('https://imgur.com/Hf3uWdB.png')"></div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-primary-color/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-building text-primary-light"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Commercial Real Estate</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">Fractional ownership in premium commercial properties across Bangladesh</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-primary-light font-semibold">8-12% ROI</span>
+                            <span class="text-gray-500 text-sm">৳5Cr Target</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Asset 2 -->
+                <div class="investment-card rounded-2xl overflow-hidden bg-gray-900/50 backdrop-blur-sm border border-gray-800">
+                    <div class="h-40 bg-cover bg-center" style="background-image: url('https://imgur.com/EuuCYM2.png')"></div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-yellow-500/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-coins text-yellow-400"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Gold & Precious Metals</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">Secure gold investments with fully insured storage and transparent pricing</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-yellow-400 font-semibold">6-9% ROI</span>
+                            <span class="text-gray-500 text-sm">৳2Cr Target</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Asset 3 -->
+                <div class="investment-card rounded-2xl overflow-hidden bg-gray-900/50 backdrop-blur-sm border border-gray-800">
+                    <div class="h-40 bg-cover bg-center" style="background-image: url('https://imgur.com/16Su6UT.png')"></div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-file-contract text-green-400"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Government Bonds</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">Low-risk, high-security national bonds with guaranteed returns</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-green-400 font-semibold">5-7% ROI</span>
+                            <span class="text-gray-500 text-sm">৳10Cr Target</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Asset 4 -->
+                <div class="investment-card rounded-2xl overflow-hidden bg-gray-900/50 backdrop-blur-sm border border-gray-800">
+                    <div class="h-40 bg-cover bg-center" style="background-image: url('https://imgur.com/X99QETi.png')"></div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-tractor text-emerald-400"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Agricultural Land</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">Collective farmland ownership with professional agricultural management</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-emerald-400 font-semibold">10-15% ROI</span>
+                            <span class="text-gray-500 text-sm">৳3Cr Target</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="text-center">
+                <h3 class="text-2xl font-black text-white mb-4">Ready to Join Bangladesh's Financial Revolution?</h3>
+                <p class="text-gray-400 max-w-2xl mx-auto mb-8">Be part of the movement transforming how millions save, spend, and invest</p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <button onclick="openModal('waitlist')" class="btn-primary text-white font-bold py-3 px-6 rounded-xl text-base glow-primary">
+                        Join the Waitlist Today
+                    </button>
+                    <a href="mailto:irfankarim67@gmail.com?subject=Investment Inquiry for Credi Pay" class="btn-secondary text-gray-900 font-bold py-3 px-6 rounded-xl text-base">
+                        Explore Investor Opportunities
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Partners Section -->
+    <section id="partners" class="py-20 section-gradient">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-center text-gray-900 mb-12">Building the Future of Finance.</h2>
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-black mb-6">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">Strategic Partnerships</span>
+                    <span class="block bg-clip-text text-transparent bg-gradient-to-r from-primary-light to-accent-color">Building Bangladesh's Financial Future</span>
+                </h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Working with employers, merchants, and financial institutions to create a comprehensive ecosystem
+                </p>
+            </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <!-- A. For Investors -->
-                <div class="p-8 bg-white rounded-xl shadow-lg border-t-4 border-dark-cyan">
-                    <h3 class="text-2xl font-bold text-dark-cyan mb-4">For Investors: A Scalable Opportunity</h3>
-                    <div class="space-y-4 text-gray-700">
-                        <p><strong>Traction & Validation:</strong> Currently in the <strong>NSU Startup Next Incubation Program</strong>. Shortlisted for the iDEA government 2025 grant.</p>
-                        <p><strong>Market Opportunity:</strong> We target the <strong>55.22 Million credit-ready individuals</strong> in Bangladesh, digitizing the 80% who use informal savings (Samiti).</p>
-                        <p><strong>Revenue Model:</strong> Multi-stream revenue from BNPL fees, Samiti platform fees, and long-term investment commissions (AUM) provides high LTV and stability.</p>
+                <!-- For Employers -->
+                <div class="feature-card rounded-2xl p-8">
+                    <div class="w-16 h-16 rounded-2xl bg-primary-color/20 flex items-center justify-center mb-6 glow-primary">
+                        <i class="fas fa-building text-primary-light text-2xl"></i>
                     </div>
-                    <!-- Investor Contact Button -->
-                    <a id="invest-btn-section" href="mailto:irfankarim67@gmail.com?subject=Investment Inquiry for Credi Pay" onclick="handleMailtoClick('invest-btn-section', 'Contact for Investment Info');" class="inline-block mt-6 btn-primary text-white font-semibold py-3 px-8 rounded-xl shadow-lg">
-                        Contact for Investment Info
-                    </a>
+                    <h3 class="text-2xl font-black text-white mb-4">For Employers</h3>
+                    <p class="text-gray-400 mb-6">Offer financial wellness as an employee benefit with our salary-linked credit and savings platform.</p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-primary-color/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-primary-light text-sm"></i>
+                            </div>
+                            <span class="text-gray-300">Increase employee retention</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-primary-color/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-primary-light text-sm"></i>
+                            </div>
+                            <span class="text-gray-300">Reduce financial stress</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-primary-color/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-primary-light text-sm"></i>
+                            </div>
+                            <span class="text-gray-300">Zero cost implementation</span>
+                        </div>
+                    </div>
+                    
+                    <button onclick="openModal('partner')" class="btn-primary text-white font-bold py-3 px-6 rounded-xl">
+                        Become an Employer Partner
+                    </button>
                 </div>
 
-                <!-- B. For Employers/Merchants -->
-                <div class="p-8 bg-white rounded-xl shadow-lg border-t-4 border-gray-700" id="partners">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">For Employers & Merchants: Strategic Partnership</h3>
-                    <div class="space-y-4 text-gray-700">
-                        <p><strong>Value Proposition:</strong> Boost <strong>employee financial wellness</strong> (reducing stress/absenteeism) and increase <strong>customer sales</strong> by offering flexible, interest-free payment options at checkout.</p>
-                        <p><strong>Integration:</strong> Seamless integration with our secure, salary-linked NPSB repayment system and merchant dashboards.</p>
-                        <p><strong>Partnership Pipeline:</strong> LOIs already secured from factories ready for integration.</p>
+                <!-- For Merchants -->
+                <div class="feature-card rounded-2xl p-8">
+                    <div class="w-16 h-16 rounded-2xl bg-accent-color/20 flex items-center justify-center mb-6 glow-primary">
+                        <i class="fas fa-store text-accent-color text-2xl"></i>
                     </div>
-                    <!-- Partner Button (Modal) -->
-                    <button onclick="openModal('partner')" class="inline-block mt-6 bg-gray-700 text-white font-semibold py-3 px-8 rounded-xl shadow-lg hover:bg-gray-900 transition duration-150" >
-                        Become a Partner
+                    <h3 class="text-2xl font-black text-white mb-4">For Merchants</h3>
+                    <p class="text-gray-400 mb-6">Increase sales and customer loyalty with our integrated BNPL and payment solutions.</p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-accent-color/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-accent-color text-sm"></i>
+                            </div>
+                            <span class="text-gray-300">Increase average order value</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-accent-color/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-accent-color text-sm"></i>
+                            </div>
+                            <span class="text-gray-300">Attract new customer segments</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-accent-color/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-accent-color text-sm"></i>
+                            </div>
+                            <span class="text-gray-300">Competitive transaction fees</span>
+                        </div>
+                    </div>
+                    
+                    <button onclick="openModal('partner')" class="btn-primary text-white font-bold py-3 px-6 rounded-xl">
+                        Become a Merchant Partner
                     </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 8. Final Call to Action (Dual) -->
-    <section id="signup" class="py-20">
+    <!-- Enhanced Footer -->
+    <footer class="footer-gradient pt-16 pb-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 rounded-2xl shadow-2xl overflow-hidden">
-                
-                <!-- Left Panel (Users) -->
-                <div class="p-12 bg-dark-cyan text-white space-y-4">
-                    <h3 class="text-3xl font-extrabold">Ready for a Better Financial Life?</h3>
-                    <p class="text-gray-200">Sign up for early access to our BNPL, Digital Samiti, and Round-Up features.</p>
-                    <!-- Button now opens the modal for Waitlist -->
-                    <button onclick="openModal('waitlist')" class="w-full bg-white text-dark-cyan font-bold py-3 rounded-xl shadow-xl hover:bg-gray-100 transition duration-150">
-                        Notify Me
-                    </button>
-                </div>
-
-                <!-- Right Panel (Investors/Partners) -->
-                <div class="p-12 bg-gray-800 text-white space-y-4" id="contact">
-                    <h3 class="text-3xl font-extrabold">Believe in Our Vision?</h3>
-                    <p class="text-gray-400">Get in touch to learn about investment or partnership opportunities with Credit Pay.</p>
-                    <!-- Investor Contact Button -->
-                    <a id="invest-btn-final" href="mailto:irfankarim67@gmail.com?subject=Investment Inquiry for Credi Pay" onclick="handleMailtoClick('invest-btn-final', 'Contact the Team');" class="inline-block investor-cta-btn py-3 px-8 rounded-xl shadow-xl hover:bg-yellow-400 transition duration-150 mt-4">
-                        Contact the Team
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-b border-gray-700 pb-8 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                 <div>
-                    <!-- Footer Logo -->
-                    <a href="#hero" class="flex items-center">
+                    <div class="flex items-center mb-4">
                         <img 
                             src="https://i.imgur.com/9L6DzoA.png" 
                             alt="Credi Pay Logo" 
-                            class="h-8 w-auto" 
-                            onerror="this.onerror=null; this.src='https://placehold.co/120x32/008B8B/ffffff?text=Credi+Pay+Logo';" 
+                            class="h-8 w-auto mr-3" 
                         />
-                    </a>
-                    <p class="text-sm text-gray-400 mt-2">Where Daily Needs Meet Financial Ease.</p>
+                        <span class="text-white font-bold text-xl">Credi Pay</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6">Where Daily Needs Meet Financial Ease</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary-color transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary-color transition duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary-color transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
                 </div>
+                
                 <div>
-                    <h4 class="font-bold mb-3 text-gray-300">Company</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#solutions" class="hover:text-dark-cyan transition duration-150">About</a></li>
-                        <li><a href="#vision" class="hover:text-dark-cyan transition duration-150">Marketplace</a></li>
-                        <li><a href="#partners" class="hover:text-dark-cyan transition duration-150">Become a Partner</a></li>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#solutions" class="text-gray-400 hover:text-white transition duration-300">Features</a></li>
+                        <li><a href="#vision" class="text-gray-400 hover:text-white transition duration-300">Marketplace</a></li>
+                        <li><a href="#partners" class="text-gray-400 hover:text-white transition duration-300">Partners</a></li>
                     </ul>
                 </div>
+                
                 <div>
-                    <h4 class="font-bold mb-3 text-gray-300">Legal</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-dark-cyan transition duration-150">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-dark-cyan transition duration-150">Terms of Service</a></li>
+                    <h4 class="text-white font-bold mb-4">Resources</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Community</a></li>
                     </ul>
                 </div>
+                
                 <div>
-                    <h4 class="font-bold mb-3 text-gray-300">Contact</h4>
-                    <p class="text-sm text-gray-400">Email: irfankarim67@gmail.com</p>
-                    <p class="text-sm text-gray-400">Bangladesh</p>
+                    <h4 class="text-white font-bold mb-4">Legal</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Compliance</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="text-center text-sm text-gray-500">
-                &copy; <span id="current-year-footer"></span> Credi Pay. All rights reserved.
+            
+            <div class="pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-500 text-sm">&copy; 2024 Credi Pay. All rights reserved. Building the future of finance in Bangladesh.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Universal Modal for Waitlist and Partner Sign-up -->
-    <div id="contact-modal" class="modal-overlay" onclick="closeModal(event)">
-        <div class="modal-content bg-white p-8 rounded-xl shadow-2xl max-w-lg w-full mx-4" role="dialog" aria-modal="true">
-            <div class="flex justify-between items-center border-b pb-3 mb-4">
-                <h3 id="modal-title" class="text-2xl font-bold text-dark-cyan">Join the Waitlist</h3>
-                <button onclick="closeModal(event)" class="text-gray-400 hover:text-gray-700 text-3xl leading-none">&times;</button>
+    <!-- Enhanced Modal -->
+    <div id="contact-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+        <div class="modal-content bg-gray-900 rounded-2xl shadow-2xl max-w-lg w-full border border-gray-800 transform transition-all duration-300 scale-95 opacity-0">
+            <div class="p-6 border-b border-gray-800 flex justify-between items-center">
+                <h3 id="modal-title" class="text-xl font-bold text-white">Join the Credi Pay Waitlist</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white transition duration-300">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
             </div>
             
-            <form id="waitlist-form" onsubmit="handleModalSubmit(event)">
-                <p id="modal-description" class="text-gray-600 mb-6">Be the first to access our powerful financial tools.</p>
+            <form id="waitlist-form" onsubmit="handleModalSubmit(event)" class="p-6">
+                <p id="modal-description" class="text-gray-400 mb-6">Be among the first to experience Bangladesh's next-generation financial platform.</p>
                 
                 <div class="space-y-4">
                     <div>
-                        <label for="form-name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                        <label for="form-name" class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
                         <input type="text" id="form-name" name="name" required
-                               class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-dark-cyan focus:border-dark-cyan" />
+                               class="form-input w-full px-4 py-3 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary-color" />
                     </div>
                     <div>
-                        <label for="form-email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                        <label for="form-email" class="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
                         <input type="email" id="form-email" name="email" required
-                               class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-dark-cyan focus:border-dark-cyan" />
+                               class="form-input w-full px-4 py-3 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary-color" />
                     </div>
                     <div id="form-role-group" class="hidden">
-                        <label for="form-role" class="block text-sm font-medium text-gray-700">Your Role / Company Type</label>
+                        <label for="form-role" class="block text-sm font-medium text-gray-300 mb-2">Your Role / Company Type</label>
                         <input type="text" id="form-role" name="role" placeholder="e.g., HR Manager at Acme Factory"
-                               class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-dark-cyan focus:border-dark-cyan" />
+                               class="form-input w-full px-4 py-3 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary-color" />
                     </div>
                 </div>
                 
-                <button type="submit" class="w-full btn-primary text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-xl mt-6">
-                    Submit Inquiry
+                <button type="submit" class="w-full btn-primary text-white font-bold py-3 rounded-lg mt-6 glow-primary">
+                    Join the Financial Revolution
                 </button>
                 <p id="form-message" class="text-sm text-center mt-3 hidden"></p>
             </form>
         </div>
     </div>
-    
+
     <script>
-        // ===================================
-        // SLIDESHOW LOGIC
-        // ===================================
-        const SLIDESHOW_IMAGES = [
-            'https://imgur.com/HbbgTlr.png', // Placeholder 1: Abstract blue digital finance theme
-            'https://imgur.com/lW5a5OE.png', // Placeholder 2: Darker cyan, finance-related text
-            'https://imgur.com/NS7H6MQ.png', // Placeholder 3: Dark green/cyan
-            'https://imgur.com/nq7GfLW.png' // Placeholder 4: Primary cyan color
-        ];
-
-        let slideIndex = 0;
-        let slides = []; // Array to hold the created slide elements
-
-        function createSlides(imageUrls) {
-            const container = document.getElementById('slideshow-container');
+        // Enhanced JavaScript with animations and interactions
+        
+        // Particle background for hero section
+        function createParticles() {
+            const container = document.getElementById('particles-container');
             if (!container) return;
-
-            imageUrls.forEach((url, index) => {
-                const slide = document.createElement('div');
-                slide.classList.add('slide');
-                // Use a secure way to set the background image
-                slide.style.backgroundImage = `url('${url}')`;
-                slide.style.backgroundAttachment = 'fixed'; // Keep parallax scroll effect on individual slides
-                container.appendChild(slide);
-                slides.push(slide);
-
-                // Make the first slide active immediately
-                if (index === 0) {
-                    slide.classList.add('active');
-                }
-            });
-        }
-
-        function showNextSlide() {
-            if (slides.length === 0) return;
-
-            // Hide current slide
-            slides[slideIndex].classList.remove('active');
-
-            // Calculate next index
-            slideIndex = (slideIndex + 1) % slides.length;
-
-            // Show next slide (The CSS transition handles the fading effect)
-            slides[slideIndex].classList.add('active');
-        }
-
-        function startSlideshow() {
-            if (SLIDESHOW_IMAGES.length > 0) {
-                createSlides(SLIDESHOW_IMAGES);
-                // Start the automatic transition every 5 seconds (5000ms)
-                setInterval(showNextSlide, 5000); 
+            
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 2px and 6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation duration
+                const duration = Math.random() * 20 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                const delay = Math.random() * 5;
+                particle.style.animationDelay = `${delay}s`;
+                
+                container.appendChild(particle);
             }
         }
         
-        // ===================================
-        // UTILITY & MODAL LOGIC
-        // ===================================
-        
-        const modal = document.getElementById('contact-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalDescription = document.getElementById('modal-description');
-        const formRoleGroup = document.getElementById('form-role-group');
-        const formMessage = document.getElementById('form-message');
-        let currentModalType = ''; 
-        
+        // Enhanced modal functions
         function openModal(type) {
-            currentModalType = type;
-            formMessage.classList.add('hidden'); 
+            const modal = document.getElementById('contact-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+            const formRoleGroup = document.getElementById('form-role-group');
+            const formMessage = document.getElementById('form-message');
             
+            // Reset form and message
             document.getElementById('waitlist-form').reset();
-
+            formMessage.classList.add('hidden');
+            
             if (type === 'waitlist') {
-                modalTitle.textContent = 'Join the Early Access Waitlist';
-                modalDescription.textContent = 'Be the first to access our powerful financial tools.';
+                modalTitle.textContent = 'Join the Credi Pay Waitlist';
+                modalDescription.textContent = 'Be among the first to experience Bangladesh\'s next-generation financial platform.';
                 formRoleGroup.classList.add('hidden');
                 document.getElementById('form-role').removeAttribute('required');
             } else if (type === 'partner') {
@@ -983,108 +1071,136 @@
                 formRoleGroup.classList.remove('hidden');
                 document.getElementById('form-role').setAttribute('required', 'required');
             }
-
-            modal.classList.add('active');
+            
+            // Show modal with animation
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.querySelector('.modal-content').classList.remove('scale-95', 'opacity-0');
+                modal.querySelector('.modal-content').classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('contact-modal');
+            const modalContent = modal.querySelector('.modal-content');
+            
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
             
             setTimeout(() => {
-                const firstFocusable = modal.querySelector('input, button');
-                if (firstFocusable) firstFocusable.focus();
+                modal.classList.add('hidden');
             }, 300);
         }
-
-        function closeModal(event) {
-            if (event.target === modal || event.target.tagName === 'BUTTON' && event.target.closest('#contact-modal')) {
-                modal.classList.remove('active');
-            }
-        }
-
+        
         function handleModalSubmit(event) {
             event.preventDefault();
             const form = event.target;
             const formData = new FormData(form);
+            const formMessage = document.getElementById('form-message');
             
-            const submissionData = {};
-            formData.forEach((value, key) => { submissionData[key] = value; });
-            submissionData.type = currentModalType;
-            
-            console.log('Form Submission:', submissionData);
-
-            formMessage.textContent = `Thank you for your interest! We received your ${currentModalType} inquiry.`;
+            // Simulate form submission
+            formMessage.textContent = 'Thank you for your interest! We will contact you soon.';
             formMessage.classList.remove('hidden', 'text-red-400');
-            formMessage.classList.add('text-green-600');
+            formMessage.classList.add('text-green-400');
             
-            form.reset(); 
+            // Reset form
+            form.reset();
             
+            // Close modal after delay
             setTimeout(() => {
-                modal.classList.remove('active');
-            }, 4000); 
+                closeModal();
+            }, 3000);
         }
-
+        
         function handleMailtoClick(elementId, originalText) {
             const btn = document.getElementById(elementId);
             if (!btn) return;
             
-            const tempText = 'Opening Email...';
             const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Opening Email...';
             
-            if (originalHTML.includes(originalText)) {
-                btn.innerHTML = originalHTML.replace(originalText, tempText);
-                
-                setTimeout(() => {
-                    if (btn.innerHTML.includes(tempText)) {
-                        btn.innerHTML = originalHTML;
-                    }
-                }, 100);
-            }
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+            }, 2000);
         }
         
-        // ===================================
-        // MOBILE MENU TOGGLE LOGIC
-        // ===================================
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIconOpen = document.getElementById('menu-icon-open');
-        const menuIconClose = document.getElementById('menu-icon-close');
-
-        if (mobileMenuButton) {
-            mobileMenuButton.addEventListener('click', toggleMobileMenu);
-        }
-
+        // Mobile menu toggle
         function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIconOpen = document.getElementById('menu-icon-open');
+            const menuIconClose = document.getElementById('menu-icon-close');
+            
             const isExpanded = mobileMenu.classList.contains('hidden');
-
+            
             if (isExpanded) {
                 mobileMenu.classList.remove('hidden');
                 menuIconOpen.classList.add('hidden');
                 menuIconClose.classList.remove('hidden');
-                mobileMenuButton.setAttribute('aria-expanded', 'true');
             } else {
                 mobileMenu.classList.add('hidden');
                 menuIconOpen.classList.remove('hidden');
                 menuIconClose.classList.add('hidden');
-                mobileMenuButton.setAttribute('aria-expanded', 'false');
-            }
-        }
-
-        function closeMobileMenu() {
-            if (!mobileMenu.classList.contains('hidden')) {
-                toggleMobileMenu();
             }
         }
         
-        // Close modal using Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape' && modal.classList.contains('active')) {
-                closeModal(event);
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIconOpen = document.getElementById('menu-icon-open');
+            const menuIconClose = document.getElementById('menu-icon-close');
+            
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
             }
+        }
+        
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            // Set up mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', toggleMobileMenu);
+            }
+            
+            // Close modal when clicking outside
+            const modal = document.getElementById('contact-modal');
+            if (modal) {
+                modal.addEventListener('click', function(event) {
+                    if (event.target === modal) {
+                        closeModal();
+                    }
+                });
+            }
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+            
+            // Add scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements for animation
+            document.querySelectorAll('.feature-card, .investment-card').forEach(function(el) {
+                observer.observe(el);
+            });
         });
-
-        // Initialize all functions on window load
-        window.onload = function() {
-            document.getElementById('current-year-footer').textContent = new Date().getFullYear();
-            startSlideshow(); // Start the new slideshow
-        };
-
     </script>
 
 </body>
