@@ -193,7 +193,7 @@
             z-index: 1; /* Below the content */
         }
         
-        /* Slideshow Dark Overlay */
+        /* Slideshow Dark Overlay - REDUCED OPACITY FROM 0.7 TO 0.5 */
         .slideshow-container::before {
             content: "";
             position: absolute;
@@ -201,7 +201,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.7); /* Dark overlay for better contrast */
+            background: rgba(0, 0, 0, 0.5); /* REDUCED: Dark overlay for better contrast */
             z-index: 5;
         }
         
@@ -234,6 +234,29 @@
         .solution-card:hover {
             transform: scale(1.02);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* FIXED: Market Opportunity buttons - removed hover dependency */
+        .market-opportunity-btn {
+            background-color: #374151; /* gray-700 equivalent */
+            color: white;
+            font-weight: bold;
+        }
+        .market-opportunity-btn p:first-child {
+            color: white !important;
+        }
+        .market-opportunity-btn p:last-child {
+            color: #9CA3AF !important; /* gray-400 equivalent */
+        }
+
+        /* FIXED: Investor CTA button in "Believe in Our Vision" section */
+        .investor-cta-btn {
+            background-color: #FFC300; /* secondary-color */
+            color: #1F2937; /* gray-900 equivalent */
+            font-weight: bold;
+        }
+        .investor-cta-btn:hover {
+            background-color: #FBBF24; /* yellow-400 equivalent */
         }
     </style>
 </head>
@@ -695,27 +718,28 @@
                     <div class="pt-4 border-t border-gray-700">
                         <h4 class="text-2xl font-bold text-dark-cyan mb-4">Market Opportunity:</h4>
                         <div class="grid grid-cols-2 gap-4 text-sm">
-                            <div class="p-3 bg-gray-800 rounded-lg text-center">
-                                <p class="font-bold text-white">$900B+</p>
+                            <!-- FIXED: Market Opportunity buttons - removed hover dependency -->
+                            <div class="p-3 market-opportunity-btn rounded-lg text-center">
+                                <p class="font-bold">$900B+</p>
                                 <p class="text-gray-400">Untapped Asset Value</p>
                             </div>
-                            <div class="p-3 bg-gray-800 rounded-lg text-center">
-                                <p class="font-bold text-white">55M+</p>
+                            <div class="p-3 market-opportunity-btn rounded-lg text-center">
+                                <p class="font-bold">55M+</p>
                                 <p class="text-gray-400">Potential Investors</p>
                             </div>
-                            <div class="p-3 bg-gray-800 rounded-lg text-center">
-                                <p class="font-bold text-white"><1%</p>
+                            <div class="p-3 market-opportunity-btn rounded-lg text-center">
+                                <p class="font-bold"><1%</p>
                                 <p class="text-gray-400">Current Market Penetration</p>
                             </div>
-                            <div class="p-3 bg-gray-800 rounded-lg text-center">
-                                <p class="font-bold text-white">80%</p>
+                            <div class="p-3 market-opportunity-btn rounded-lg text-center">
+                                <p class="font-bold">80%</p>
                                 <p class="text-gray-400">Using Informal Savings</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Investor Call to Action -->
-                    <a id="invest-btn-marketplace" href="mailto:irfankarim67@gmail.com?subject=Investment Inquiry for Credi Pay" onclick="handleMailtoClick('invest-btn-marketplace', 'Contact Our Team');" class="w-full inline-block text-center bg-secondary-color text-gray-900 font-bold py-4 rounded-xl shadow-xl hover:bg-yellow-400 transition duration-150 mt-4 text-lg">
+                    <a id="invest-btn-marketplace" href="mailto:irfankarim67@gmail.com?subject=Investment Inquiry for Credi Pay" onclick="handleMailtoClick('invest-btn-marketplace', 'Contact Our Team');" class="w-full inline-block text-center investor-cta-btn py-4 rounded-xl shadow-xl hover:bg-yellow-400 transition duration-150 mt-4 text-lg">
                         Lead the Investment Democratization Movement → Contact Our Team
                     </a>
                 </div>
@@ -788,7 +812,7 @@
                     <h3 class="text-3xl font-extrabold">Believe in Our Vision?</h3>
                     <p class="text-gray-400">Get in touch to learn about investment or partnership opportunities with Credit Pay.</p>
                     <!-- Investor Contact Button -->
-                    <a id="invest-btn-final" href="mailto:irfankarim67@gmail.com?subject=Investment Inquiry for Credi Pay" onclick="handleMailtoClick('invest-btn-final', 'Contact the Team');" class="inline-block bg-secondary-color text-gray-900 font-bold py-3 px-8 rounded-xl shadow-xl hover:bg-yellow-400 transition duration-150 mt-4">
+                    <a id="invest-btn-final" href="mailto:irfankarim67@gmail.com?subject=Investment Inquiry for Credi Pay" onclick="handleMailtoClick('invest-btn-final', 'Contact the Team');" class="inline-block investor-cta-btn py-3 px-8 rounded-xl shadow-xl hover:bg-yellow-400 transition duration-150 mt-4">
                         Contact the Team
                     </a>
                 </div>
@@ -1065,4 +1089,3 @@
 
 </body>
 </html>
-
