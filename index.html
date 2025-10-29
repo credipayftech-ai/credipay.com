@@ -65,7 +65,8 @@
         .modal-overlay.active .modal-content {
             transform: scale(1);
         }
-        /* New styling for the investment section */
+        
+        /* === Investment Marketplace Section (#vision) === */
         .investment-bg {
             background: linear-gradient(145deg, #1f2937, #111827);
         }
@@ -75,16 +76,64 @@
             background-clip: text;
             color: transparent;
         }
+        /* Base card style - this used to hold the full styling, now mostly for hover scale */
         .asset-card {
             transition: all 0.3s ease;
-            border: 1px solid #374151;
+            border: none; /* Removed default border */
+            background: none; /* Removed default background */
         }
         .asset-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-color);
-            box-shadow: 0 10px 25px -5px rgba(0, 139, 139, 0.2);
+            transform: scale(1.05); /* Increased scale for better visual feedback */
         }
-        
+
+        /* Styles for the background image inside the asset card */
+        .asset-bg-card {
+            height: 150px; /* Fixed height for visual consistency */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem; /* Matches the card rounding */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Dark gradient overlay for text readability on images */
+        .asset-bg-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.1));
+            z-index: 10;
+            border-radius: 0.75rem;
+            transition: background 0.3s ease;
+        }
+
+        /* Hover effect to slightly lighten the overlay */
+        .asset-card:hover .asset-bg-card::before {
+             background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+        }
+
+        .asset-content {
+            position: relative;
+            z-index: 20;
+            padding: 1rem;
+            color: white;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        /* Specific background images for assets */
+        .asset-realestate { background-image: url('https://imgur.com/Hf3uWdB.png'); } /* Building skyline */
+        .asset-gold { background-image: url('https://imgur.com/EuuCYM2.png'); } /* Gold bars/coins */
+        .asset-bonds { background-image: url('https://imgur.com/16Su6UT.png'); } /* Abstract finance graph/paperwork */
+        .asset-agriculture { background-image: url('https://imgur.com/X99QETi.png'); } /* Farmland/crops */
+
+
         /* === Problem Section (Full Background Image) === */
         .problem-card-bg {
             height: 250px; /* Fixed height for consistent cards */
@@ -92,7 +141,6 @@
             background-position: center;
             position: relative;
             color: white;
-            /* Ensure the text is visible on the image */
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
         
@@ -126,34 +174,127 @@
         .problem-card-bg:hover::before {
              background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
         }
+
+        /* === Solutions Section (SLIDESHOW STYLES ADDED) */
+        .solutions-bg {
+            position: relative; /* Needed for absolute positioning of slideshow-container */
+            overflow: hidden;
+            /* Static background properties removed to be handled by the slideshow */
+        }
+        
+        /* Slideshow Container */
+        .slideshow-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1; /* Below the content */
+        }
+        
+        /* Slideshow Dark Overlay */
+        .slideshow-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7); /* Dark overlay for better contrast */
+            z-index: 5;
+        }
+        
+        /* Individual Slide */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out; /* Smooth cross-fade transition */
+        }
+        .slide.active {
+            opacity: 1;
+        }
+
+
+        /* Styling for the solution cards to ensure content visibility and lift them above the overlay */
+        .solution-card {
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white card */
+            backdrop-filter: blur(8px); /* Add a slight blur effect for glassmorphism */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative; /* Bring card content above the overlay */
+            z-index: 10;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .solution-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
     </style>
 </head>
 <body class="text-gray-800">
 
-    <!-- Header / Navigation -->
+    <!-- 1. Header / Navigation (FIXED FOR MOBILE) -->
     <header class="shadow-md sticky top-0 z-50 bg-white">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <!-- LOGO -->
-            <a href="#hero" class="flex items-center">
-                <img 
-                    src="https://i.imgur.com/9L6DzoA.png" 
-                    alt="Credi Pay Logo" 
-                    class="h-8 w-auto" 
-                    onerror="this.onerror=null; this.src='https://placehold.co/120x32/008B8B/ffffff?text=Credi+Pay+Logo';" 
-                />
-            </a>
-            
-            <div class="space-x-4 hidden md:flex">
-                <a href="#solutions" class="text-gray-600 hover:text-dark-cyan font-medium transition duration-150">Features</a>
-                <a href="#vision" class="text-gray-600 hover:text-dark-cyan font-medium transition duration-150">Marketplace</a>
-                <a href="#partners" class="text-gray-600 hover:text-dark-cyan font-medium transition duration-150">Partners</a>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                
+                <!-- LOGO -->
+                <a href="#hero" class="flex items-center">
+                    <img 
+                        src="https://i.imgur.com/9L6DzoA.png" 
+                        alt="Credi Pay Logo" 
+                        class="h-8 w-auto" 
+                        onerror="this.onerror=null; this.src='https://placehold.co/120x32/008B8B/ffffff?text=Credi+Pay+Logo';" 
+                    />
+                </a>
+                
+                <!-- Desktop Links & CTA (Hidden on small screens) -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <!-- Links -->
+                    <a href="#solutions" class="text-gray-600 hover:text-dark-cyan font-medium transition duration-150">Features</a>
+                    <a href="#vision" class="text-gray-600 hover:text-dark-cyan font-medium transition duration-150">Marketplace</a>
+                    <a href="#partners" class="text-gray-600 hover:text-dark-cyan font-medium transition duration-150">Partners</a>
+                    <!-- Desktop CTA -->
+                    <button onclick="openModal('waitlist')" class="btn-primary text-white font-semibold py-2 px-6 rounded-xl shadow-lg hover:shadow-xl">Join Waitlist</button>
+                </div>
+    
+                <!-- Mobile Menu Toggle & Mobile CTA (Visible on small screens) -->
+                <div class="flex items-center md:hidden">
+                    <!-- Mobile CTA (Smaller for mobile screens) -->
+                    <button onclick="openModal('waitlist')" class="btn-primary text-white font-semibold py-1.5 px-4 rounded-xl shadow-lg text-sm mr-4">Waitlist</button>
+                    
+                    <!-- Hamburger Button -->
+                    <button id="mobile-menu-button" type="button" class="p-2 rounded-md text-gray-400 hover:text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-dark-cyan transition duration-150" aria-expanded="false">
+                        <!-- Icon when menu is closed -->
+                        <svg id="menu-icon-open" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <!-- Icon when menu is open -->
+                        <svg id="menu-icon-close" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
             </div>
-            <!-- Waitlist Button (Modal) -->
-            <button onclick="openModal('waitlist')" class="btn-primary text-white font-semibold py-2 px-6 rounded-xl shadow-lg hover:shadow-xl hidden sm:inline-block">Join Waitlist</button>
-        </nav>
+            
+            <!-- Mobile Menu Content (Hidden by default, toggled by JS) -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="pt-2 pb-3 space-y-1">
+                    <a href="#solutions" onclick="closeMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-dark-cyan transition duration-150">Features</a>
+                    <a href="#vision" onclick="closeMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-dark-cyan transition duration-150">Marketplace</a>
+                    <a href="#partners" onclick="closeMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-dark-cyan transition duration-150">Partners</a>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <!-- 1. Hero Section -->
+    <!-- 2. Hero Section -->
     <section id="hero" class="bg-dark-cyan-gradient text-white py-20 sm:py-32">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <!-- Text Content -->
@@ -187,7 +328,7 @@
         </div>
     </section>
 
-    <!-- 2. The Problem We Solve -->
+    <!-- 3. The Problem We Solve -->
     <section id="problem" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-12">Solving Real Financial Pain Points.</h2>
@@ -242,44 +383,50 @@
         </div>
     </section>
 
-    <!-- 3. Our Core Solutions -->
-    <section id="solutions" class="py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-center text-gray-900 mb-16">Your All-in-One Financial Health Platform</h2>
+    <!-- 4. Our Core Solutions -->
+    <section id="solutions" class="py-20 solutions-bg">
+        <!-- SLIDESHOW CONTAINER (New) -->
+        <div id="slideshow-container" class="slideshow-container">
+            <!-- Slides will be added here by JavaScript -->
+        </div>
+        <!-- END SLIDESHOW CONTAINER -->
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-center text-white mb-16">Your All-in-One Financial Health Platform</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
                 <!-- Solution Card 1: Credit Line -->
-                <div class="p-8 bg-white rounded-2xl shadow-xl border-t-4 border-dark-cyan transform hover:scale-[1.02] transition duration-300">
-                    <div class="p-3 bg-dark-cyan/10 rounded-full w-fit mb-4 icon-shadow">
-                        <svg class="w-8 h-8 text-dark-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                <div class="p-8 solution-card rounded-2xl shadow-xl border-t-4 border-dark-cyan transform hover:scale-[1.02] transition duration-300">
+                    <div class="p-3 bg-white/20 rounded-full w-fit mb-4 icon-shadow">
+                        <svg class="w-8 h-8 text-secondary-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Credit Line & BNPL</h3>
-                    <p class="text-gray-700">Salary-backed credit for daily essentials. Auto-debit repayment via NPSB for near-zero defaults, making credit accessible and responsible.</p>
+                    <h3 class="text-2xl font-bold text-white mb-3">Credit Line & BNPL</h3>
+                    <p class="text-gray-200">Salary-backed credit for daily essentials. Auto-debit repayment via NPSB for near-zero defaults, making credit accessible and responsible.</p>
                 </div>
 
                 <!-- Solution Card 2: Digital Samiti -->
-                <div class="p-8 bg-white rounded-2xl shadow-xl border-t-4 border-dark-cyan transform hover:scale-[1.02] transition duration-300">
-                    <div class="p-3 bg-dark-cyan/10 rounded-full w-fit mb-4 icon-shadow">
-                        <svg class="w-8 h-8 text-dark-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.292"></path></svg>
+                <div class="p-8 solution-card rounded-2xl shadow-xl border-t-4 border-dark-cyan transform hover:scale-[1.02] transition duration-300">
+                    <div class="p-3 bg-white/20 rounded-full w-fit mb-4 icon-shadow">
+                        <svg class="w-8 h-8 text-secondary-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.292"></path></svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Digital Samiti</h3>
-                    <p class="text-gray-700">Digital, automated, and secure rotating savings circles. Built-in virality ensures user acquisition via social networks and strong user retention.</p>
+                    <h3 class="text-2xl font-bold text-white mb-3">Digital Samiti</h3>
+                    <p class="text-gray-200">Digital, automated, and secure rotating savings circles. Built-in virality ensures user acquisition via social networks and strong user retention.</p>
                 </div>
 
                 <!-- Solution Card 3: Round-Up Investing -->
-                <div class="p-8 bg-white rounded-2xl shadow-xl border-t-4 border-dark-cyan transform hover:scale-[1.02] transition duration-300">
-                    <div class="p-3 bg-dark-cyan/10 rounded-full w-fit mb-4 icon-shadow">
-                        <svg class="w-8 h-8 text-dark-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                <div class="p-8 solution-card rounded-2xl shadow-xl border-t-4 border-dark-cyan transform hover:scale-[1.02] transition duration-300">
+                    <div class="p-3 bg-white/20 rounded-full w-fit mb-4 icon-shadow">
+                        <svg class="w-8 h-8 text-secondary-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Round-Up Investments</h3>
-                    <p class="text-gray-700">Micro-investing spare change from every purchase into regulated mutual funds. Creates loyal, financially healthy users who generate AUM revenue.</p>
+                    <h3 class="text-2xl font-bold text-white mb-3">Round-Up Investments</h3>
+                    <p class="text-gray-200">Micro-investing spare change from every purchase into regulated mutual funds. Creates loyal, financially healthy users who generate AUM revenue.</p>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- 4. How It Works (For Users) -->
+    <!-- 5. How It Works (For Users) -->
     <section id="how-it-works" class="py-20 bg-dark-cyan-gradient text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-3xl sm:text-4xl font-extrabold mb-12">Financial Freedom in 3 Steps</h2>
@@ -315,7 +462,7 @@
         </div>
     </section>
     
-    <!-- 5. Investment Marketplace (FIXED VERSION) -->
+    <!-- 6. Investment Marketplace (With Images) -->
     <section id="vision" class="py-20 investment-bg text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-4">
@@ -426,29 +573,49 @@
                     </div>
                     
                     <div class="grid grid-cols-1 gap-6">
-                        <!-- Investment Assets Grid -->
+                        <!-- Investment Assets Grid (UPDATED WITH IMAGES) -->
                         <div>
                             <h4 class="font-bold text-xl text-dark-cyan mb-4">Access Premium Investment Classes:</h4>
                             <div class="grid grid-cols-2 gap-4">
-                                <div class="asset-card p-4 bg-gray-800 rounded-lg text-center">
-                                    <div class="text-3xl mb-2">🏢</div>
-                                    <p class="font-semibold">Commercial Real Estate</p>
-                                    <p class="text-xs text-gray-400 mt-1">Own parts of office buildings & shopping malls</p>
+                                
+                                <!-- Asset 1: Commercial Real Estate -->
+                                <div class="asset-card transition duration-300 rounded-xl">
+                                    <div class="asset-bg-card asset-realestate rounded-xl">
+                                        <div class="asset-content">
+                                            <p class="font-bold text-lg leading-tight">Commercial Real Estate</p>
+                                            <p class="text-xs text-gray-200 mt-1">Own parts of office buildings & shopping malls</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="asset-card p-4 bg-gray-800 rounded-lg text-center">
-                                    <div class="text-3xl mb-2">🥇</div>
-                                    <p class="font-semibold">Gold & Precious Metals</p>
-                                    <p class="text-xs text-gray-400 mt-1">Secure gold investments with insured storage</p>
+                                
+                                <!-- Asset 2: Gold & Precious Metals -->
+                                <div class="asset-card transition duration-300 rounded-xl">
+                                    <div class="asset-bg-card asset-gold rounded-xl">
+                                        <div class="asset-content">
+                                            <p class="font-bold text-lg leading-tight">Gold & Precious Metals</p>
+                                            <p class="text-xs text-gray-200 mt-1">Secure gold investments with insured storage</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="asset-card p-4 bg-gray-800 rounded-lg text-center">
-                                    <div class="text-3xl mb-2">📜</div>
-                                    <p class="font-semibold">Government Bonds</p>
-                                    <p class="text-xs text-gray-400 mt-1">Low-risk, high-security national bonds</p>
+                                
+                                <!-- Asset 3: Government Bonds -->
+                                <div class="asset-card transition duration-300 rounded-xl">
+                                    <div class="asset-bg-card asset-bonds rounded-xl">
+                                        <div class="asset-content">
+                                            <p class="font-bold text-lg leading-tight">Government Bonds</p>
+                                            <p class="text-xs text-gray-200 mt-1">Low-risk, high-security national bonds</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="asset-card p-4 bg-gray-800 rounded-lg text-center">
-                                    <div class="text-3xl mb-2">🌾</div>
-                                    <p class="font-semibold">Agricultural Land</p>
-                                    <p class="text-xs text-gray-400 mt-1">Collective farmland ownership with managed returns</p>
+                                
+                                <!-- Asset 4: Agricultural Land -->
+                                <div class="asset-card transition duration-300 rounded-xl">
+                                    <div class="asset-bg-card asset-agriculture rounded-xl">
+                                        <div class="asset-content">
+                                            <p class="font-bold text-lg leading-tight">Agricultural Land</p>
+                                            <p class="text-xs text-gray-200 mt-1">Collective farmland ownership with managed returns</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -564,7 +731,7 @@
         </div>
     </section>
 
-    <!-- 6. For Investors & Partners -->
+    <!-- 7. For Investors & Partners -->
     <section id="investors" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl sm:text-4xl font-extrabold text-center text-gray-900 mb-12">Building the Future of Finance.</h2>
@@ -601,7 +768,7 @@
         </div>
     </section>
 
-    <!-- 7. Final Call to Action (Dual) -->
+    <!-- 8. Final Call to Action (Dual) -->
     <section id="signup" class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 rounded-2xl shadow-2xl overflow-hidden">
@@ -710,21 +877,75 @@
     </div>
     
     <script>
-        // Set current year dynamically for the footer
-        document.getElementById('current-year-footer').textContent = new Date().getFullYear();
+        // ===================================
+        // SLIDESHOW LOGIC
+        // ===================================
+        const SLIDESHOW_IMAGES = [
+            'https://imgur.com/HbbgTlr.png', // Placeholder 1: Abstract blue digital finance theme
+            'https://imgur.com/lW5a5OE.png', // Placeholder 2: Darker cyan, finance-related text
+            'https://imgur.com/NS7H6MQ.png', // Placeholder 3: Dark green/cyan
+            'https://imgur.com/nq7GfLW.png' // Placeholder 4: Primary cyan color
+        ];
 
+        let slideIndex = 0;
+        let slides = []; // Array to hold the created slide elements
+
+        function createSlides(imageUrls) {
+            const container = document.getElementById('slideshow-container');
+            if (!container) return;
+
+            imageUrls.forEach((url, index) => {
+                const slide = document.createElement('div');
+                slide.classList.add('slide');
+                // Use a secure way to set the background image
+                slide.style.backgroundImage = `url('${url}')`;
+                slide.style.backgroundAttachment = 'fixed'; // Keep parallax scroll effect on individual slides
+                container.appendChild(slide);
+                slides.push(slide);
+
+                // Make the first slide active immediately
+                if (index === 0) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        function showNextSlide() {
+            if (slides.length === 0) return;
+
+            // Hide current slide
+            slides[slideIndex].classList.remove('active');
+
+            // Calculate next index
+            slideIndex = (slideIndex + 1) % slides.length;
+
+            // Show next slide (The CSS transition handles the fading effect)
+            slides[slideIndex].classList.add('active');
+        }
+
+        function startSlideshow() {
+            if (SLIDESHOW_IMAGES.length > 0) {
+                createSlides(SLIDESHOW_IMAGES);
+                // Start the automatic transition every 5 seconds (5000ms)
+                setInterval(showNextSlide, 5000); 
+            }
+        }
+        
+        // ===================================
+        // UTILITY & MODAL LOGIC
+        // ===================================
+        
         const modal = document.getElementById('contact-modal');
         const modalTitle = document.getElementById('modal-title');
         const modalDescription = document.getElementById('modal-description');
         const formRoleGroup = document.getElementById('form-role-group');
         const formMessage = document.getElementById('form-message');
-        let currentModalType = ''; // 'waitlist' or 'partner'
-
+        let currentModalType = ''; 
+        
         function openModal(type) {
             currentModalType = type;
-            formMessage.classList.add('hidden'); // Clear previous messages
+            formMessage.classList.add('hidden'); 
             
-            // Reset form fields
             document.getElementById('waitlist-form').reset();
 
             if (type === 'waitlist') {
@@ -741,7 +962,6 @@
 
             modal.classList.add('active');
             
-            // Trap focus when modal opens (simple accessibility)
             setTimeout(() => {
                 const firstFocusable = modal.querySelector('input, button');
                 if (firstFocusable) firstFocusable.focus();
@@ -749,7 +969,6 @@
         }
 
         function closeModal(event) {
-            // Only close if clicking the background or the close button
             if (event.target === modal || event.target.tagName === 'BUTTON' && event.target.closest('#contact-modal')) {
                 modal.classList.remove('active');
             }
@@ -760,56 +979,87 @@
             const form = event.target;
             const formData = new FormData(form);
             
-            // Simulate sending data
             const submissionData = {};
             formData.forEach((value, key) => { submissionData[key] = value; });
             submissionData.type = currentModalType;
             
             console.log('Form Submission:', submissionData);
 
-            // Display success message
             formMessage.textContent = `Thank you for your interest! We received your ${currentModalType} inquiry.`;
             formMessage.classList.remove('hidden', 'text-red-400');
             formMessage.classList.add('text-green-600');
             
-            // Reset the form after success
             form.reset(); 
             
-            // Optionally auto-close the modal after a few seconds
             setTimeout(() => {
                 modal.classList.remove('active');
             }, 4000); 
         }
 
-        // Function: Provides visual feedback for mailto links
         function handleMailtoClick(elementId, originalText) {
             const btn = document.getElementById(elementId);
             if (!btn) return;
             
             const tempText = 'Opening Email...';
-            // Store original content and replace it immediately
             const originalHTML = btn.innerHTML;
             
-            // Only change if the button contains the original text (to handle complex content)
             if (originalHTML.includes(originalText)) {
                 btn.innerHTML = originalHTML.replace(originalText, tempText);
                 
-                // Set a timeout to revert the text, giving the browser time to launch the mail client
                 setTimeout(() => {
-                    // Revert the text back to the original if it still contains the temp text
                     if (btn.innerHTML.includes(tempText)) {
                         btn.innerHTML = originalHTML;
                     }
                 }, 100);
             }
         }
+        
+        // ===================================
+        // MOBILE MENU TOGGLE LOGIC
+        // ===================================
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
 
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', toggleMobileMenu);
+        }
+
+        function toggleMobileMenu() {
+            const isExpanded = mobileMenu.classList.contains('hidden');
+
+            if (isExpanded) {
+                mobileMenu.classList.remove('hidden');
+                menuIconOpen.classList.add('hidden');
+                menuIconClose.classList.remove('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'true');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        function closeMobileMenu() {
+            if (!mobileMenu.classList.contains('hidden')) {
+                toggleMobileMenu();
+            }
+        }
+        
         // Close modal using Escape key
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape' && modal.classList.contains('active')) {
                 closeModal(event);
             }
         });
+
+        // Initialize all functions on window load
+        window.onload = function() {
+            document.getElementById('current-year-footer').textContent = new Date().getFullYear();
+            startSlideshow(); // Start the new slideshow
+        };
 
     </script>
 
